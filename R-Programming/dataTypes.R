@@ -13,6 +13,7 @@ print(list)
 # Matrix
 M1 <- matrix(c(1, 2, 3, 'a', 'b', 'c'), nrow = 2, ncol = 3, byrow = TRUE)
 
+M2 = M1 %o% t(M1)
 print(M1)
 
 # Array
