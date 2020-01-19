@@ -1,30 +1,55 @@
-# loading
+---
+title: "Titanic Disaster Servivers' Analysis"
+output: html_notebook
+---
 
+This is an R Notebook for classification of servivers of [Titanic Disaster](http://rmarkdown.rstudio.com), based on the different aspects like age, sex and pessanger class etc.. The training and test dataset are taken from Kaggle.
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+### **Loading Datasets**
+```{r}
 train <- read.csv("CSV/train.csv")
 test <- read.csv("CSV/test.csv")
+```
 
-# Add servived
+### **Add column *servived* to test dataset**
+```{r}
 test.survived <- data.frame(test[,1], Survived = rep("None", nrow(test)), test[,2:11])
 names(test.survived)[1] <- names(train[1])
+```
 
+```{r}
 # joining data sets
 data.combined <- rbind(train, test.survived)
+```
 
-# working with some R datatypes
+### **working with some R datatypes**
+```{r}
 str(data.combined)
+```
 
+```{r}
 data.combined$Survived <- as.factor(data.combined$Survived)
 data.combined$Pclass <- as.factor(data.combined$Pclass)
+```
 
-
+```{r}
 # gross servival rate for titanic disaster ---> a table
 table(data.combined$Survived)
+```
 
+```{r}
 # distribution accross classes of passengers
 table(data.combined$Pclass)
+```
 
+### **Loading library for Visualization**
+```{r}
 library(ggplot2)
+```
 
+```{r}
 # pay more, get higher place, be closer to life bags   --->
         #   checking no of people in 3 classes and no of survivers
 
@@ -32,42 +57,56 @@ library(ggplot2)
 #train$Pclass <- as.factor(train$Pclass)
 table(train$Pclass)
 table(train$Survived)
+```
 
-### plotting  ###
-
+## **Plotting**
+```{r}
 # devision of survivers in each class
 ggplot(train, aes(x = Pclass, fill = factor(Survived))) +
   geom_histogram(binwidth = 0.5) +
   xlab("Pclass") +
   ylab("Total Count") +
   labs(fill = "Survived")
+```
 
+```{r}
 # separation of classes based of survival
 ggplot(train, aes(x = Survived, fill = factor(Pclass))) +
   geom_histogram(binwidth = 0.5) +
   xlab("Survived") +
   ylab("Total Count") +
   labs(fill = "Pclass")
+```
 
-
+### **Data manipulation for Characters**
+```{r}
 # dealing with names in training dataset
 head(as.character(train$Name))
+```
 
-
+```{r}
 length(as.character(data.combined$Name))            # 1309
 length(unique(as.character(data.combined$Name)))    # 1307    ----->  unique
 # here we have 2 duplicate names
+```
 
+```{r}
 # extract (2) duplicate names
-dup.names <- as.character(data.combined[which(duplicated(as.character(data.combined$Name))), "Name"])#     ----->  unique
+dup.names <- as.character(data.combined[which(duplicated(as.character(data.combined$Name))), "Name"])
+#     ----->  unique vs duplicate
+```
 
+```{r}
 # look all records having duplicate names
 data.combined[which(data.combined$Name %in% dup.names),]
+```
 
-
+```{r}
 # work on string data
 library(stringr)
+```
 
+```{r}
 # devision based on sex & marital status (title)
 misses <- data.combined[which(str_detect(data.combined$Name, "Miss.")),]
 mrses <- data.combined[which(str_detect(data.combined$Name, "Mrs.")),]
@@ -75,17 +114,18 @@ masters <- data.combined[which(str_detect(data.combined$Name, "Master.")),]
 misters <- data.combined[which(str_detect(data.combined$Name, "Mr.")),]
 
 head(misses)
+```
 
+```{r}
 females <- data.combined[which(data.combined$Sex == "female"),]
 males <- data.combined[which(data.combined$Sex == "male"),]
 
 head(females)
 head(males)
+```
 
-
-
-# relation b/w title and Survival as well as Pclass
-
+### **Relation b/w title and Survival as well as Pclass**
+```{r}
 # extract all the possible titles
 get.titles <- function(name) {
     
@@ -104,18 +144,22 @@ get.titles <- function(name) {
     return("Other")
   }
 }
+```
 
+```{r}
 # creating a vector for all titles to append as a new column
 all.titles <- NULL
 for (i in 1:nrow(data.combined)) {
   all.titles <- c(all.titles, get.titles(data.combined[i, "Name"]))
 }
-  
+```
+
+```{r}
 data.combined$Titles <- as.factor(all.titles) # appending new 'title' column
   nlevels(data.combined$Titles)                 # no of all titles
+```
 
-
-
+```{r}
 # visualization       --->      servival per class for every title
   
 #  Differentiate b/w histogram and bargraph, after running the plot, below
@@ -126,7 +170,6 @@ ggplot(data.combined[1:819,], aes(x = Titles, fill = Survived)) +
   xlab("Titles") +
   ylab("Total") +
   labs(fill = "Survived")
-  
+```
 
-
-
+#### *End, for now!!*
