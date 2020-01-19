@@ -12,3 +12,4 @@ d2 <- data.frame(
 
 RD <- rbind(d1, d2) # appends row-wise
 CD <- cbind(d1, d2) # appends column-wise
+
