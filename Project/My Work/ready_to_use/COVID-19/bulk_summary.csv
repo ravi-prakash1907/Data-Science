@@ -1,0 +1,76 @@
+"","States","Country","Confirmed","Deaths","Recovered"
+"1","New South Wales","Australia",4,0,4
+"2","Victoria","Australia",4,0,4
+"3","Queensland","Australia",5,0,0
+"4","South Australia","Australia",2,0,2
+"5","Others","Belgium",1,0,1
+"6","Others","Cambodia",1,0,1
+"7","Toronto, ON","Canada",2,0,0
+"8","British Columbia","Canada",5,0,0
+"9","London, ON","Canada",1,0,1
+"10","Others","Egypt",1,0,0
+"11","Others","Finland",1,0,1
+"12","Others","France",12,1,4
+"13","Others","Germany",16,0,12
+"14","Hong Kong","Hong Kong",68,2,6
+"15","Others","India",3,0,3
+"16","Others","Iran",5,2,0
+"17","Others","Italy",3,0,0
+"18","Others","Japan",94,1,18
+"19","Macau","Macau",10,0,6
+"20","Anhui","Mainland China",987,6,474
+"21","Beijing","Mainland China",395,4,153
+"22","Chongqing","Mainland China",567,6,299
+"23","Fujian","Mainland China",293,1,126
+"24","Gansu","Mainland China",91,2,71
+"25","Guangdong","Mainland China",1332,5,642
+"26","Guangxi","Mainland China",245,2,90
+"27","Guizhou","Mainland China",146,2,72
+"28","Hainan","Mainland China",168,4,86
+"29","Hebei","Mainland China",307,5,169
+"30","Heilongjiang","Mainland China",476,12,136
+"31","Henan","Mainland China",1265,19,637
+"32","Hunan","Mainland China",1010,4,634
+"33","Inner Mongolia","Mainland China",75,0,16
+"34","Jiangsu","Mainland China",631,0,356
+"35","Jiangxi","Mainland China",934,1,433
+"36","Jilin","Mainland China",91,1,43
+"37","Liaoning","Mainland China",121,1,59
+"38","Ningxia","Mainland China",71,0,44
+"39","Qinghai","Mainland China",18,0,16
+"40","Shaanxi","Mainland China",245,1,118
+"41","Shandong","Mainland China",546,4,254
+"42","Shanghai","Mainland China",334,2,199
+"43","Shanxi","Mainland China",132,0,76
+"44","Sichuan","Mainland China",520,3,217
+"45","Tianjin","Mainland China",131,3,59
+"46","Tibet","Mainland China",1,0,1
+"47","Xinjiang","Mainland China",76,1,22
+"48","Yunnan","Mainland China",174,2,79
+"49","Zhejiang","Mainland China",1175,1,633
+"50","Others","Malaysia",22,0,15
+"51","Others","Nepal",1,0,1
+"52","Diamond Princess cruise ship","Others",634,2,1
+"53","Others","Philippines",3,1,1
+"54","Others","Russia",2,0,2
+"55","Others","Singapore",84,0,34
+"56","Others","South Korea",104,1,16
+"57","Others","Spain",2,0,2
+"58","Others","Sri Lanka",1,0,1
+"59","Others","Sweden",1,0,0
+"60","Taiwan","Taiwan",24,1,2
+"61","Others","Thailand",35,0,15
+"62","Others","UK",9,0,8
+"63","Others","United Arab Emirates",9,0,4
+"64","Seattle, WA","US",1,0,1
+"65","Chicago, IL","US",2,0,2
+"66","Tempe, AZ","US",1,0,0
+"67","Orange, CA","US",1,0,0
+"68","Los Angeles, CA","US",1,0,0
+"69","Santa Clara, CA","US",2,0,0
+"70","Boston, MA","US",1,0,0
+"71","San Benito, CA","US",2,0,0
+"72","Madison, WI","US",1,0,0
+"73","San Diego County, CA","US",2,0,0
+"74","San Antonio, TX","US",1,0,0
+"75","Others","Vietnam",16,0,7

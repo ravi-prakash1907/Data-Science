@@ -37,4 +37,4 @@ df <- data.frame(
     lang = c('C++', 'Java')
 )
 
-print(df)
+print(df$classes)

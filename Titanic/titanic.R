@@ -1,3 +1,6 @@
+# Setting the working directory
+setwd("/home/ravi/Documents/Data-Science/Titanic/")
+
 # loading
 
 train <- read.csv("CSV/train.csv")
