@@ -1,7 +1,7 @@
 # nCoVID-19
 This repository is made for my data-science and analytics' work on the **_novel Coronavirus_**, that came into action in late 2019
 
-> It begain to affect people in Wuhan i.e. a city in Hubei province of China
+> It began to affect people in Wuhan i.e. a city in Hubei province of China
 
 
 
