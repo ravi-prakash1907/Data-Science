@@ -1,18 +1,18 @@
-# 21/01/2020 to 20/02/2020
+# 21/01/2020 to yesterday
 
 # Setting the working directory
 setwd("/home/ravi/Documents/Data-Science/Project/My Work/")
 
 
 ## replace new time series files first, then run following command -----> 'n your dataset is updated
-check.Confirmed = read.csv("test/time_series_19-covid-Confirmed.csv")
-check.Recovered = read.csv("test/time_series_19-covid-Recovered.csv")
-check.Deaths = read.csv("test/time_series_19-covid-Deaths.csv")
+check.Confirmed = read.csv("/home/ravi/Documents/Data-Science/John H. University/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv")
+check.Recovered = read.csv("/home/ravi/Documents/Data-Science/John H. University/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Recovered.csv")
+check.Deaths = read.csv("/home/ravi/Documents/Data-Science/John H. University/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Deaths.csv")
 
 # loading
-Recovered <- read.csv("test/time_series_2019-ncov-Recovered.csv")
-Confirmed <- read.csv("test/time_series_2019-ncov-Confirmed.csv")
-Deaths <- read.csv("test/time_series_2019-ncov-Deaths.csv")
+Confirmed <- read.csv("old/time_series_2019-ncov-Confirmed.csv")
+Recovered <- read.csv("old/time_series_2019-ncov-Recovered.csv")
+Deaths <- read.csv("old/time_series_2019-ncov-Deaths.csv")
 
 # removing NAs
 for (i in 1:nrow(Confirmed)) {
@@ -34,24 +34,21 @@ for (i in 1:nrow(Deaths)) {
 }
 
 ###########################
-View(Confirmed)
-View(Deaths)
-View(Recovered)
+#View(Confirmed)
+#View(Deaths)
+#View(Recovered)
 
 
 ####################
-View(check.Confirmed)
-View(check.Deaths)
-View(check.Recovered)
-
+#View(check.Confirmed)
+#View(check.Deaths)
+#View(check.Recovered)
 
 
 
 ####################################
 # Appending new rows (country/state)
 ####################################
-
-
 joiner <- function(newDF, oldDF) {
   
   get(newDF) -> dfNew
@@ -60,7 +57,7 @@ joiner <- function(newDF, oldDF) {
   #newName = colnames(dfOld[5])         # because it is "X1.21.20.22.00"
   newRows = nrow(dfNew) - nrow(dfOld) # no. of new rows
   for (i in 1:newRows) {
-    dfOld <- rbind(dfOld, dfOld[nrow(dfOld),])
+    dfOld <- rbind(dfOld[,], dfOld[nrow(dfOld),])
   }
   
   dfOld$Province.State <- dfNew$Province.State
@@ -80,23 +77,18 @@ joiner <- function(newDF, oldDF) {
   return(dfNew)
 }
 
-
-
 ###########################
 ###########################
-
-
 
 check.Confirmed = joiner("check.Confirmed", "Confirmed")
 check.Deaths = joiner("check.Deaths", "Deaths")
 check.Recovered = joiner("check.Recovered", "Recovered")
 
-
 ###############################
 
-View(check.Confirmed)
-View(check.Deaths)
-View(check.Recovered)
+#View(check.Confirmed)
+#View(check.Deaths)
+#View(check.Recovered)
 
 ###############################
 str(check.Confirmed)
@@ -128,9 +120,9 @@ write.csv(check.Deaths, file = "cleaned/time_series_19-covid-Deaths.csv", row.na
 
 #############################################################
 
-cleaned.Confirmed <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
+cleaned.Confirmed <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
 cleaned.Deaths <- read.csv("cleaned/time_series_19-covid-Deaths.csv")
-cleaned.Recovered <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
+cleaned.Recovered <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
 
 str(cleaned.Confirmed)
 
