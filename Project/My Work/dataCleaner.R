@@ -98,16 +98,25 @@ str(check.Confirmed)
 for (i in 1:length(levels(check.Confirmed$Province.State))) {
   if(levels(check.Confirmed$Province.State)[i]=="")
     levels(check.Confirmed$Province.State)[i] = "Others"
+  
+  if(levels(check.Confirmed$Country.Region)[i]=="Others")
+    levels(check.Confirmed$Country.Region)[i] = "Diamond Princess cruise ship"
 }
 
 for (i in 1:length(levels(check.Deaths$Province.State))) {
   if(levels(check.Deaths$Province.State)[i]=="")
     levels(check.Deaths$Province.State)[i] = "Others"
+  
+  if(levels(check.Deaths$Country.Region)[i]=="Others")
+    levels(check.Deaths$Country.Region)[i] = "Diamond Princess cruise ship"
 }
 
 for (i in 1:length(levels(check.Recovered$Province.State))) {
   if(levels(check.Recovered$Province.State)[i]=="")
     levels(check.Recovered$Province.State)[i] = "Others"
+  
+  if(levels(check.Recovered$Country.Region)[i]=="Others")
+    levels(check.Recovered$Country.Region)[i] = "Diamond Princess cruise ship"
 }
 #####################
 

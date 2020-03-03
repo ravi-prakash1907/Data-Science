@@ -40,7 +40,7 @@ Confirmed <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
 Deaths <- read.csv("cleaned/time_series_19-covid-Deaths.csv")
 Recovered <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
 
-# Removing outlier i.e. Hubei (13th)
+# Removing outlier i.e. Hubei
 Hubei.Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Hubei", negate = F)), ]
 Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Hubei", negate = T)), ]
 Confirmed = Confirmed[order(Confirmed$Country.Region),]
@@ -66,6 +66,34 @@ colnames(Hubei.Confirmed) <- names
 colnames(Hubei.Deaths) <- names
 colnames(Hubei.Recovered) <- names
 #----------------------------------------------#
+
+# Removing outlier i.e. Diamond Princess
+Diamond.Princess.Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Diamond Princess cruise ship", negate = F)), ]
+Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Diamond Princess cruise ship", negate = T)), ]
+Confirmed = Confirmed[order(Confirmed$Country.Region),]
+row.names(Confirmed) <- NULL
+
+Diamond.Princess.Deaths = Deaths[ which(str_detect(Deaths$Province.State, "Diamond Princess cruise ship", negate = F)),]
+Deaths = Deaths[ which(str_detect(Deaths$Province.State, "Diamond Princess cruise ship", negate = T)), ]
+Deaths = Deaths[order(Deaths$Country.Region),]
+row.names(Deaths) <- NULL
+
+Diamond.Princess.Recovered = Recovered[ which(str_detect(Recovered$Province.State, "Diamond Princess cruise ship", negate = F)), ]
+Recovered = Recovered[ which(str_detect(Recovered$Province.State, "Diamond Princess cruise ship", negate = T)), ]
+Recovered = Recovered[order(Recovered$Country.Region),]
+row.names(Recovered) <- NULL
+
+###
+Diamond.Princess.Confirmed <- cbind(Diamond.Princess.Confirmed[,1], Diamond.Princess.Confirmed[,5:ncol(Diamond.Princess.Confirmed)])
+Diamond.Princess.Deaths <- cbind(Diamond.Princess.Deaths[,1], Diamond.Princess.Deaths[,5:ncol(Diamond.Princess.Deaths)])
+Diamond.Princess.Recovered <- cbind(Diamond.Princess.Recovered[,1], Diamond.Princess.Recovered[,5:ncol(Diamond.Princess.Recovered)])
+
+names <- c("Loaction", colnames(Diamond.Princess.Confirmed[2:ncol(Diamond.Princess.Confirmed)]))
+colnames(Diamond.Princess.Confirmed) <- names
+colnames(Diamond.Princess.Deaths) <- names
+colnames(Diamond.Princess.Recovered) <- names
+#----------------------------------------------#
+
 
 
 #######################
@@ -307,6 +335,36 @@ find.aggrigate <- function(df1, colName) {
   
   return(df)
 }
+
+
+####
+outlier.datewise <- function(Name, df1, df2, df3) { # hubei, dim. pr. etc..
+  get(df1) -> dfC
+  get(df2) -> dfD
+  get(df3) -> dfR
+  
+  day = 1:(ncol(dfC)-1)
+  d = as.Date("20-01-2020", format(c("%d-%m-%Y")))
+  
+  date = as.character((day + d), format(c("%d-%m-%Y")))      # its lenngth is equal to --> no. of days
+  date = factor(c(date), levels = date)
+  
+  confirmed = as.character(dfC[1,2:ncol(dfC)])
+  deaths = as.character(dfD[1,2:ncol(dfD)])
+  recovered = as.character(dfR[1,2:ncol(dfR)])
+  
+  df <- data.frame(
+    State = rep(Name, (ncol(dfC)-1)),
+    Day = factor(c(1:length(date)), levels = 1:length(date)),
+    Date = date,
+    Confirmed = confirmed,
+    Deaths = deaths,
+    Recovered = recovered
+  )
+  
+  return(df)
+}
+
 #-----------------------------------------------------------------------#
 
 
@@ -363,13 +421,19 @@ Hubei.summary = data.frame(
   Deaths = Hubei.Deaths[,ncol(Hubei.Deaths)],
   Recovered = Hubei.Recovered[,ncol(Hubei.Recovered)]
 )
-
+Diamond.Princess.summary = data.frame(
+  Location = "Diamond Princess",
+  Confirmed = Diamond.Princess.Confirmed[,ncol(Diamond.Princess.Confirmed)],
+  Deaths = Diamond.Princess.Deaths[,ncol(Diamond.Princess.Deaths)],
+  Recovered = Diamond.Princess.Recovered[,ncol(Diamond.Princess.Recovered)]
+)
 
 #View(One.Country.States.summary)
 #View(One.Country.Aggregate.summary)
 #View(All.Countries.summary)
 
 #View(Hubei.summary)
+#View(Diamond.Princess.summary)
 
 ##########################################
 #########    about the world     #########
@@ -407,27 +471,10 @@ Rest.world.dataset.dateWise = datewise(Country, TRUE, countries)
 #View(One.country.dataset.dateWise)
 #View(Rest.world.dataset.dateWise)
 
+############
+Hubei.datewise = outlier.datewise("Hubei", "Hubei.Confirmed", "Hubei.Deaths", "Hubei.Recovered")
+Diamond.Princess.datewise = outlier.datewise("Diamond Princess", "Diamond.Princess.Confirmed", "Diamond.Princess.Deaths", "Diamond.Princess.Recovered")
 
-####
-day = 1:(ncol(Hubei.Confirmed)-1)
-d = as.Date("20-01-2020", format(c("%d-%m-%Y")))
-
-date = as.character((day + d), format(c("%d-%m-%Y")))      # its lenngth is equal to --> no. of days
-date = factor(c(date), levels = date)
-
-confirmed = as.character(Hubei.Confirmed[1,2:ncol(Hubei.Confirmed)])
-deaths = as.character(Hubei.Deaths[1,2:ncol(Hubei.Deaths)])
-recovered = as.character(Hubei.Recovered[1,2:ncol(Hubei.Recovered)])
-
-Hubei.datewise <- data.frame(
-  State = rep("Hubei", (ncol(Hubei.Confirmed)-1)),
-  Day = factor(c(1:length(date)), levels = 1:length(date)),
-  Date = date,
-  Confirmed = confirmed,
-  Deaths = deaths,
-  Recovered = recovered
-)
-####
 
 
 ####################################################################################################################
@@ -454,6 +501,14 @@ write.csv(Hubei.Recovered, file = "ready_to_use/COVID-19/Hubei/Hubei_daily_Recov
 
 write.csv(Hubei.summary, file = "ready_to_use/COVID-19/Hubei/Hubei_summary.csv", row.names = FALSE)
 write.csv(Hubei.datewise, file = "ready_to_use/COVID-19/Hubei/Hubei_dataset_dateWise_summary.csv", row.names = FALSE)
+
+################      DIAMOND PRINCESS     #################
+write.csv(Diamond.Princess.Confirmed, file = "ready_to_use/COVID-19/Cruise/Diamond_Princess_daily_Confirmed.csv", row.names = FALSE)
+write.csv(Diamond.Princess.Deaths, file = "ready_to_use/COVID-19/Cruise/Diamond_Princess_daily_Deaths.csv", row.names = FALSE)
+write.csv(Diamond.Princess.Recovered, file = "ready_to_use/COVID-19/Cruise/Diamond_Princess_daily_Recovered.csv", row.names = FALSE)
+
+write.csv(Diamond.Princess.summary, file = "ready_to_use/COVID-19/Cruise/Diamond_Princess_summary.csv", row.names = FALSE)
+write.csv(Diamond.Princess.datewise, file = "ready_to_use/COVID-19/Cruise/Diamond_Princess_dataset_dateWise_summary.csv", row.names = FALSE)
 
 ################      CHINA     #################
 write.csv(country.spread.daily("Confirmed", cName), file = "ready_to_use/COVID-19/China/China_States_daily_Confirmed.csv", row.names = FALSE)
@@ -530,7 +585,7 @@ write.csv(dataset.dateWise, file = "ready_to_use/COVID-19/Mixed/dateWise_bulk_su
 
 
 #################################
-########   Main Three    ########
+########   Main Four    ########
 ###   (Hubei, China, World)   ###
 #################################
 
@@ -538,36 +593,44 @@ write.csv(dataset.dateWise, file = "ready_to_use/COVID-19/Mixed/dateWise_bulk_su
 a = Hubei.Confirmed
 b = country.aggregate.daily("Confirmed", "Mainland China")
 c = find.aggrigate("Non.China.Countries.daily.Confirmed", "World")
+d = Diamond.Princess.Confirmed
 colnames(a) <- colnames(c)
 colnames(b) <- colnames(c)
+colnames(d) <- colnames(c)
 
-Three.daily.Confirmed <- rbind(a, b, c)
+Four.daily.Confirmed <- rbind(a, b, c, d)
 ##
 a = Hubei.Deaths
 b = country.aggregate.daily("Deaths", "Mainland China")
 c = find.aggrigate("Non.China.Countries.daily.Deaths", "World")
+d = Diamond.Princess.Deaths
 colnames(a) <- colnames(c)
 colnames(b) <- colnames(c)
+colnames(d) <- colnames(c)
 
-Three.daily.Deaths <- rbind(a, b, c)
+Four.daily.Deaths <- rbind(a, b, c, d)
 ##
 a = Hubei.Recovered
 b = country.aggregate.daily("Recovered", "Mainland China")
 c = find.aggrigate("Non.China.Countries.daily.Recovered", "World")
+d = Diamond.Princess.Recovered
 colnames(a) <- colnames(c)
 colnames(b) <- colnames(c)
+colnames(d) <- colnames(c)
 
-Three.daily.Recovered <- rbind(a, b, c)
+Four.daily.Recovered <- rbind(a, b, c, d)
 
 
 # 3 summary    ->> 3rows,4cols
 a = Hubei.summary
 b = country.summarizer("Mainland China")
 c = find.aggrigate("Non.China.Countries.summary", "World")
+d = Diamond.Princess.summary
 colnames(a) <- colnames(c)
 colnames(b) <- colnames(c)
+colnames(d) <- colnames(c)
 
-Three.Summary <- rbind(a, b, c)
+Four.Summary <- rbind(a, b, c, d)
 
 
 
@@ -575,19 +638,21 @@ Three.Summary <- rbind(a, b, c)
 a = Hubei.datewise
 b = datewise("Mainland China", FALSE, countries)
 c = Non.China.datewise
+d = Diamond.Princess.datewise
 colnames(a) <- colnames(c)
 colnames(b) <- colnames(c)
+colnames(d) <- colnames(c)
 
-Three.dataset.dateWise <- rbind(a, b, c)
+Four.dataset.dateWise <- rbind(a, b, c, d)
 
 
 # writting (5)
-write.csv(Three.daily.Confirmed, file = "ready_to_use/COVID-19/THREE/Three_daily_Confirmed.csv", row.names = FALSE)
-write.csv(Three.daily.Deaths, file = "ready_to_use/COVID-19/THREE/Three_daily_Deaths.csv", row.names = FALSE)
-write.csv(Three.daily.Recovered, file = "ready_to_use/COVID-19/THREE/Three_daily_Recovered.csv", row.names = FALSE)
+write.csv(Four.daily.Confirmed, file = "ready_to_use/COVID-19/FOUR/Four_daily_Confirmed.csv", row.names = FALSE)
+write.csv(Four.daily.Deaths, file = "ready_to_use/COVID-19/FOUR/Four_daily_Deaths.csv", row.names = FALSE)
+write.csv(Four.daily.Recovered, file = "ready_to_use/COVID-19/FOUR/Four_daily_Recovered.csv", row.names = FALSE)
 
-write.csv(Three.Summary, file = "ready_to_use/COVID-19/THREE/Three_Summary.csv", row.names = FALSE)
-write.csv(Three.dataset.dateWise, file = "ready_to_use/COVID-19/THREE/Three_dataset_dateWise.csv", row.names = FALSE)
+write.csv(Four.Summary, file = "ready_to_use/COVID-19/FOUR/Four_Summary.csv", row.names = FALSE)
+write.csv(Four.dataset.dateWise, file = "ready_to_use/COVID-19/FOUR/Four_dataset_dateWise.csv", row.names = FALSE)
 
 
 

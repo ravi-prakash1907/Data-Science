@@ -16,6 +16,21 @@ View(Hubei.summary)
 View(Hubei.dataset.dateWise)
 
 
+
+##    Diamond Princess (only)  (5)
+Diamond.Princess.daily.Confirmed = read.csv("ready_to_use/COVID-19/Cruise/Diamond_Princess_daily_Confirmed.csv")
+Diamond.Princess.daily.Deaths = read.csv("ready_to_use/COVID-19/Cruise/Diamond_Princess_daily_Deaths.csv")
+Diamond.Princess.daily.Recovered = read.csv("ready_to_use/COVID-19/Cruise/Diamond_Princess_daily_Recovered.csv")
+Diamond.Princess.summary = read.csv("ready_to_use/COVID-19/Cruise/Diamond_Princess_summary.csv")
+Diamond.Princess.dataset.dateWise = read.csv("ready_to_use/COVID-19/Cruise/Diamond_Princess_dataset_dateWise_summary.csv")
+
+View(Diamond.Princess.daily.Confirmed)
+View(Diamond.Princess.daily.Deaths)
+View(Diamond.Princess.daily.Recovered)
+View(Diamond.Princess.summary)
+View(Diamond.Princess.dataset.dateWise)
+
+
 ##    China (except Hubei)  (9)
 China.States.daily.Confirmed = read.csv("ready_to_use/COVID-19/China/China_States_daily_Confirmed.csv")
 China.States.daily.Deaths = read.csv("ready_to_use/COVID-19/China/China_States_daily_Deaths.csv")

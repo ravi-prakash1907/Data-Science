@@ -21,11 +21,11 @@ countryWise.bulk.summary = read.csv("ready_to_use/COVID-19/countryWise_bulk_summ
 dateWise.bulk.summary = read.csv("ready_to_use/COVID-19/dateWise_bulk_summary.csv")
 
 
-Three.daily.Confirmed = read.csv("ready_to_use/COVID-19/THREE/Three_daily_Confirmed.csv")
-Three.daily.Deaths = read.csv("ready_to_use/COVID-19/THREE/Three_daily_Deaths.csv")
-Three.daily.Recovered = read.csv("ready_to_use/COVID-19/THREE/Three_daily_Recovered.csv")
-Three.Summary = read.csv("ready_to_use/COVID-19/THREE/Three_Summary.csv")
-Three.dataset.dateWise = read.csv("ready_to_use/COVID-19/THREE/Three_dataset_dateWise.csv")
+Four.daily.Confirmed = read.csv("ready_to_use/COVID-19/FOUR/Four_daily_Confirmed.csv")
+Four.daily.Deaths = read.csv("ready_to_use/COVID-19/FOUR/Four_daily_Deaths.csv")
+Four.daily.Recovered = read.csv("ready_to_use/COVID-19/FOUR/Four_daily_Recovered.csv")
+Four.Summary = read.csv("ready_to_use/COVID-19/FOUR/Four_Summary.csv")
+Four.dataset.dateWise = read.csv("ready_to_use/COVID-19/FOUR/Four_dataset_dateWise.csv")
 
 #---------------------------------------------------------------#
 ### Functions ###
@@ -205,7 +205,7 @@ recovery.till.date = function(cName, yesORno = FALSE) {
 }
 
 # for world data
-till.date = function(yAxis, dataSet, cName = c("Hubei", "World", "Mainland China"), yesORno = FALSE) {
+till.date = function(yAxis, dataSet, cName = c("Hubei", "World", "Mainland China", "Diamond Princess"), yesORno = FALSE) {
   
   get(dataSet) -> plotFrom
   
@@ -292,13 +292,13 @@ recovery.till.date(c("Italy", "South Korea", "Hong Kong"))
 
 
 ########################
-View(Three.dataset.dateWise)
+## a Histogram or Bar plot will be better for --> Four.dataset.dateWise
+View(Four.dataset.dateWise)
 
-till.date(yAxis = "Confirmed", dataSet = "Three.dataset.dateWise", "Hubei", T)
-till.date(yAxis = "Deaths", dataSet = "Three.dataset.dateWise", cName)
-till.date(yAxis = "Recovered", dataSet = "Three.dataset.dateWise")
+till.date(yAxis = "Confirmed", dataSet = "Four.dataset.dateWise")
+till.date(yAxis = "Deaths", dataSet = "Four.dataset.dateWise", cName)
+till.date(yAxis = "Recovered", dataSet = "Four.dataset.dateWise")
 
 
-## Bar plot for --> Three.dataset.dateWise
 
 
