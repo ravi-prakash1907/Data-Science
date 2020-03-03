@@ -94,13 +94,22 @@ check.Recovered = joiner("check.Recovered", "Recovered")
 str(check.Confirmed)
 
 
-# replacing blank
+# replacing blank and renaming
 for (i in 1:length(levels(check.Confirmed$Province.State))) {
   if(levels(check.Confirmed$Province.State)[i]=="")
     levels(check.Confirmed$Province.State)[i] = "Others"
   
   if(levels(check.Confirmed$Country.Region)[i]=="Others")
     levels(check.Confirmed$Country.Region)[i] = "Diamond Princess cruise ship"
+  
+  if(levels(check.Confirmed$Country.Region)[i]=="US")
+    levels(check.Confirmed$Country.Region)[i] = "United States"
+  
+  if(levels(check.Confirmed$Country.Region)[i]=="UK")
+    levels(check.Confirmed$Country.Region)[i] = "United Kingdom"
+  
+  if(levels(check.Confirmed$Country.Region)[i]=="Mainland China")
+    levels(check.Confirmed$Country.Region)[i] = "China"
 }
 
 for (i in 1:length(levels(check.Deaths$Province.State))) {
@@ -109,6 +118,15 @@ for (i in 1:length(levels(check.Deaths$Province.State))) {
   
   if(levels(check.Deaths$Country.Region)[i]=="Others")
     levels(check.Deaths$Country.Region)[i] = "Diamond Princess cruise ship"
+  
+  if(levels(check.Deaths$Country.Region)[i]=="US")
+    levels(check.Deaths$Country.Region)[i] = "United States"
+  
+  if(levels(check.Deaths$Country.Region)[i]=="UK")
+    levels(check.Deaths$Country.Region)[i] = "United Kingdom"
+  
+  if(levels(check.Deaths$Country.Region)[i]=="Mainland China")
+    levels(check.Deaths$Country.Region)[i] = "China"
 }
 
 for (i in 1:length(levels(check.Recovered$Province.State))) {
@@ -117,6 +135,15 @@ for (i in 1:length(levels(check.Recovered$Province.State))) {
   
   if(levels(check.Recovered$Country.Region)[i]=="Others")
     levels(check.Recovered$Country.Region)[i] = "Diamond Princess cruise ship"
+  
+  if(levels(check.Recovered$Country.Region)[i]=="US")
+    levels(check.Recovered$Country.Region)[i] = "United States"
+  
+  if(levels(check.Recovered$Country.Region)[i]=="UK")
+    levels(check.Recovered$Country.Region)[i] = "United Kingdom"
+  
+  if(levels(check.Recovered$Country.Region)[i]=="Mainland China")
+    levels(check.Recovered$Country.Region)[i] = "China"
 }
 #####################
 

@@ -379,7 +379,7 @@ Countries <- levels(locations$Country.Region)
 #################################################
 
 # just change the country name to get desired data
-Country = "Mainland China"
+Country = "China"
 
 
 ###### country's (all states') daily data ######
@@ -492,7 +492,7 @@ Diamond.Princess.datewise = outlier.datewise("Diamond Princess", "Diamond.Prince
 #################################
 #############  41  ##############
 
-cName = "Mainland China"
+cName = "China"
 
 ################      HUBEI     #################
 write.csv(Hubei.Confirmed, file = "ready_to_use/COVID-19/Hubei/Hubei_daily_Confirmed.csv", row.names = FALSE)
@@ -591,7 +591,7 @@ write.csv(dataset.dateWise, file = "ready_to_use/COVID-19/Mixed/dateWise_bulk_su
 
 # 3 daily(aggregate) confirmed/deaths/recovered   ->> 3rows each
 a = Hubei.Confirmed
-b = country.aggregate.daily("Confirmed", "Mainland China")
+b = country.aggregate.daily("Confirmed", "China")
 c = find.aggrigate("Non.China.Countries.daily.Confirmed", "World")
 d = Diamond.Princess.Confirmed
 colnames(a) <- colnames(c)
@@ -601,7 +601,7 @@ colnames(d) <- colnames(c)
 Four.daily.Confirmed <- rbind(a, b, c, d)
 ##
 a = Hubei.Deaths
-b = country.aggregate.daily("Deaths", "Mainland China")
+b = country.aggregate.daily("Deaths", "China")
 c = find.aggrigate("Non.China.Countries.daily.Deaths", "World")
 d = Diamond.Princess.Deaths
 colnames(a) <- colnames(c)
@@ -611,7 +611,7 @@ colnames(d) <- colnames(c)
 Four.daily.Deaths <- rbind(a, b, c, d)
 ##
 a = Hubei.Recovered
-b = country.aggregate.daily("Recovered", "Mainland China")
+b = country.aggregate.daily("Recovered", "China")
 c = find.aggrigate("Non.China.Countries.daily.Recovered", "World")
 d = Diamond.Princess.Recovered
 colnames(a) <- colnames(c)
@@ -623,7 +623,7 @@ Four.daily.Recovered <- rbind(a, b, c, d)
 
 # 3 summary    ->> 3rows,4cols
 a = Hubei.summary
-b = country.summarizer("Mainland China")
+b = country.summarizer("China")
 c = find.aggrigate("Non.China.Countries.summary", "World")
 d = Diamond.Princess.summary
 colnames(a) <- colnames(c)
@@ -636,7 +636,7 @@ Four.Summary <- rbind(a, b, c, d)
 
 # 3 dataset datewise 3XnoOfDays -> rows, 6cols(name, dayno., date, confirm, death, recover)
 a = Hubei.datewise
-b = datewise("Mainland China", FALSE, countries)
+b = datewise("China", FALSE, countries)
 c = Non.China.datewise
 d = Diamond.Princess.datewise
 colnames(a) <- colnames(c)

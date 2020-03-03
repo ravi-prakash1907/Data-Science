@@ -205,7 +205,7 @@ recovery.till.date = function(cName, yesORno = FALSE) {
 }
 
 # for world data
-till.date = function(yAxis, dataSet, cName = c("Hubei", "World", "Mainland China", "Diamond Princess"), yesORno = FALSE) {
+till.date = function(yAxis, dataSet, cName = c("Hubei", "World", "China", "Diamond Princess"), yesORno = FALSE) {
   
   get(dataSet) -> plotFrom
   
@@ -263,15 +263,15 @@ ggplot(bulk.summary, aes(x = States, y = Confirmed, color = Country)) +
 ## Visualizing 'deaths over confirmed' COVID-19 cases
 # for single country
 plot.recovered.in("Hong Kong")
-plot.deaths.in("Mainland China")
+plot.deaths.in("China")
 
 # for multiple country
 plot.recovered.in(c("Hong Kong", "Italy", "South Korea", "Iran"))
 plot.deaths.in(c("Hong Kong", "Italy", "South Korea"))
 
 # esle then the specified country
-plot.recovered.in("Mainland China", TRUE)
-plot.deaths.in("Mainland China", TRUE)
+plot.recovered.in("China", TRUE)
+plot.deaths.in("China", TRUE)
 
 # esle then the specified countries
 countryList = levels(countryWise.bulk.summary$Country)
@@ -286,7 +286,7 @@ confirmed.till.date(c("Italy", "South Korea", "Hong Kong"))
 deaths.till.date("South Korea")
 deaths.till.date(c("Italy", "South Korea", "Hong Kong"))
 
-recovery.till.date("Mainland China")
+recovery.till.date("China")
 recovery.till.date(c("Italy", "South Korea", "Hong Kong"))
 
 
