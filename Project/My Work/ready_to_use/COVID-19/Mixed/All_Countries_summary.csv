@@ -12,6 +12,7 @@
 "Brazil",2,0,0
 "Cambodia",1,0,1
 "Canada",27,0,6
+"China",12923,109,10876
 "Croatia",7,0,0
 "Czech Republic",3,0,0
 "Denmark",4,0,0
@@ -41,7 +42,6 @@
 "Lithuania",1,0,0
 "Luxembourg",1,0,0
 "Macau",10,0,8
-"Mainland China",12923,109,10876
 "Malaysia",29,0,18
 "Mexico",5,0,0
 "Monaco",1,0,0
@@ -70,7 +70,7 @@
 "Switzerland",42,0,0
 "Taiwan",41,1,12
 "Thailand",43,1,31
-"UK",40,0,8
 "United Arab Emirates",21,0,5
-"US",105,6,9
+"United Kingdom",40,0,8
+"United States",105,6,9
 "Vietnam",16,0,16
