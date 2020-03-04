@@ -1,76 +1,80 @@
 "Country","Confirmed","Deaths","Recovered"
 "Afghanistan",1,0,0
-"Algeria",3,0,0
+"Algeria",5,0,0
 "Andorra",1,0,0
+"Argentina",1,0,0
 "Armenia",1,0,0
-"Australia",30,1,11
-"Austria",18,0,0
+"Australia",39,1,11
+"Austria",21,0,0
 "Azerbaijan",3,0,0
 "Bahrain",49,0,0
 "Belarus",1,0,0
-"Belgium",8,0,1
+"Belgium",13,0,1
 "Brazil",2,0,0
 "Cambodia",1,0,1
-"Canada",27,0,6
-"China",12923,109,10876
-"Croatia",7,0,0
-"Czech Republic",3,0,0
-"Denmark",4,0,0
+"Canada",30,0,6
+"Chile",1,0,0
+"China",12934,110,11196
+"Croatia",9,0,0
+"Czech Republic",5,0,0
+"Denmark",6,0,0
 "Diamond Princess cruise ship",0,0,0
 "Dominican Republic",1,0,0
-"Ecuador",6,0,0
+"Ecuador",7,0,0
 "Egypt",2,0,1
-"Estonia",1,0,0
+"Estonia",2,0,0
 "Finland",6,0,1
-"France",191,3,12
+"France",204,4,12
 "Georgia",3,0,0
-"Germany",159,0,16
+"Germany",196,0,16
 "Greece",7,0,0
-"Hong Kong",100,2,36
-"Iceland",6,0,0
+"Hong Kong",100,2,37
+"Iceland",11,0,0
 "India",5,0,3
 "Indonesia",2,0,0
-"Iran",1501,66,291
-"Iraq",26,0,0
-"Ireland",1,0,0
-"Israel",10,0,1
-"Italy",2036,52,149
-"Japan",274,6,32
+"Iran",2336,77,291
+"Iraq",32,0,0
+"Ireland",2,0,0
+"Israel",12,0,1
+"Italy",2502,79,160
+"Japan",293,6,43
+"Jordan",1,0,0
 "Kuwait",56,0,0
 "Latvia",1,0,0
 "Lebanon",13,0,0
 "Lithuania",1,0,0
 "Luxembourg",1,0,0
-"Macau",10,0,8
-"Malaysia",29,0,18
-"Mexico",5,0,0
+"Macau",10,0,9
+"Malaysia",36,0,22
+"Mexico",5,0,1
 "Monaco",1,0,0
 "Morocco",1,0,0
 "Nepal",1,0,1
-"Netherlands",18,0,0
+"Netherlands",24,0,0
 "New Zealand",1,0,0
 "Nigeria",1,0,0
 "North Macedonia",1,0,0
-"Norway",25,0,0
-"Oman",6,0,1
-"Pakistan",4,0,0
+"Norway",32,0,0
+"Oman",12,0,2
+"Pakistan",5,0,0
 "Philippines",3,1,1
 "Portugal",2,0,0
-"Qatar",3,0,0
+"Qatar",7,0,0
 "Romania",3,0,0
 "Russia",3,0,2
-"San Marino",8,0,0
+"San Marino",10,1,0
 "Saudi Arabia",1,0,0
-"Senegal",1,0,0
-"Singapore",108,0,78
-"South Korea",4335,28,30
-"Spain",120,0,2
+"Senegal",2,0,0
+"Singapore",110,0,78
+"South Korea",5186,28,30
+"Spain",165,1,2
 "Sri Lanka",1,0,1
-"Sweden",15,0,0
-"Switzerland",42,0,0
-"Taiwan",41,1,12
+"Sweden",21,0,0
+"Switzerland",56,0,2
+"Taiwan",42,1,12
 "Thailand",43,1,31
-"United Arab Emirates",21,0,5
-"United Kingdom",40,0,8
-"United States",105,6,9
+"Ukraine",1,0,0
+"United Arab Emirates",27,0,5
+"United Kingdom",51,0,8
+"United States",122,7,8
 "Vietnam",16,0,16
