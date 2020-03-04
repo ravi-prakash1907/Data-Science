@@ -86,14 +86,6 @@ check.Recovered = joiner("check.Recovered", "Recovered")
 
 ###############################
 
-#View(check.Confirmed)
-#View(check.Deaths)
-#View(check.Recovered)
-
-###############################
-str(check.Confirmed)
-
-
 # replacing blank in states
 for (i in 1:length(levels(check.Confirmed$Province.State))) {
   if(levels(check.Confirmed$Province.State)[i]=="") {
@@ -155,9 +147,80 @@ for (i in 1:length(levels(check.Recovered$Country.Region))) {
     levels(check.Recovered$Country.Region)[i] = "China" }
 }
 
+
+#levels(check.Confirmed$Country.Region) = sort(levels(check.Confirmed$Country.Region))
+#levels(check.Deaths$Country.Region) = sort(levels(check.Deaths$Country.Region))
+#levels(check.Recovered$Country.Region) = sort(levels(check.Recovered$Country.Region))
+
 #####################
 
+#View(check.Confirmed)
+#View(check.Deaths)
+#View(check.Recovered)
+
+###############################
+#str(check.Confirmed)
+
+
+# Removing outlier i.e. Hubei
+Hubei.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Hubei", negate = F)), ]
+check.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Hubei", negate = T)), ]
+
+Hubei.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Hubei", negate = F)),]
+check.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Hubei", negate = T)), ]
+
+Hubei.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Hubei", negate = F)), ]
+check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Hubei", negate = T)), ]
+
+
+# Removing outlier i.e. Diamond.Princess
+Diamond.Princess.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Diamond Princess cruise ship", negate = F)), ]
+check.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Diamond Princess cruise ship", negate = T)), ]
+
+Diamond.Princess.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Diamond Princess cruise ship", negate = F)),]
+check.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Diamond Princess cruise ship", negate = T)), ]
+
+Diamond.Princess.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Diamond Princess cruise ship", negate = F)), ]
+check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Diamond Princess cruise ship", negate = T)), ]
+
+
+
+## Rectifying Row sequences
+row.names(check.Confirmed) <- NULL
+row.names(check.Deaths) <- NULL
+row.names(check.Recovered) <- NULL
+
+row.names(Hubei.Confirmed) <- NULL
+row.names(Hubei.Deaths) <- NULL
+row.names(Hubei.Recovered) <- NULL
+
+row.names(Diamond.Princess.Confirmed) <- NULL
+row.names(Diamond.Princess.Deaths) <- NULL
+row.names(Diamond.Princess.Recovered) <- NULL
+
+
+###
+
+
+#----------------------------------------------#
+
+
+
+
 # creating new .csv file after cleaning the data
+
+## Hubei
+write.csv(Hubei.Confirmed, file = "cleaned/Hubei/time_series_19-covid-Confirmed.csv", row.names = FALSE)
+write.csv(Hubei.Deaths, file = "cleaned/Hubei/time_series_19-covid-Recovered.csv", row.names = FALSE)
+write.csv(Hubei.Recovered, file = "cleaned/Hubei/time_series_19-covid-Deaths.csv", row.names = FALSE)
+
+## Diamond Princess
+write.csv(Diamond.Princess.Confirmed, file = "cleaned/Diamond-Princess/time_series_19-covid-Confirmed.csv", row.names = FALSE)
+write.csv(Diamond.Princess.Deaths, file = "cleaned/Diamond-Princess/time_series_19-covid-Recovered.csv", row.names = FALSE)
+write.csv(Diamond.Princess.Recovered, file = "cleaned/Diamond-Princess/time_series_19-covid-Deaths.csv", row.names = FALSE)
+
+
+## Main files
 write.csv(check.Confirmed, file = "cleaned/time_series_19-covid-Confirmed.csv", row.names = FALSE)
 write.csv(check.Recovered, file = "cleaned/time_series_19-covid-Recovered.csv", row.names = FALSE)
 write.csv(check.Deaths, file = "cleaned/time_series_19-covid-Deaths.csv", row.names = FALSE)
@@ -166,11 +229,12 @@ write.csv(check.Deaths, file = "cleaned/time_series_19-covid-Deaths.csv", row.na
 
 #############################################################
 
+
 cleaned.Confirmed <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
 cleaned.Deaths <- read.csv("cleaned/time_series_19-covid-Deaths.csv")
 cleaned.Recovered <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
 
-str(cleaned.Confirmed)
+#str(cleaned.Confirmed)
 
 
 View(cleaned.Confirmed)
