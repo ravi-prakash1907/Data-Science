@@ -296,7 +296,7 @@ recovery.till.date(c("Italy", "South Korea", "Hong Kong"))
 View(Four.dataset.dateWise)
 
 till.date(yAxis = "Confirmed", dataSet = "Four.dataset.dateWise")
-till.date(yAxis = "Deaths", dataSet = "Four.dataset.dateWise", cName)
+till.date(yAxis = "Deaths", dataSet = "Four.dataset.dateWise")
 till.date(yAxis = "Recovered", dataSet = "Four.dataset.dateWise")
 
 
