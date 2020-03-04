@@ -35,28 +35,52 @@ library(stringr)
 # Setting the working directory
 setwd("/home/ravi/Documents/Data-Science/Project/My Work/")
 
-# data files (csv)
+### data files (csv) ###
+
+# Main
 Confirmed <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
 Deaths <- read.csv("cleaned/time_series_19-covid-Deaths.csv")
 Recovered <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
 
-# Removing outlier i.e. Hubei
-Hubei.Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Hubei", negate = F)), ]
-Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Hubei", negate = T)), ]
+# sorting Countrywise
 Confirmed = Confirmed[order(Confirmed$Country.Region),]
-row.names(Confirmed) <- NULL
-
-Hubei.Deaths = Deaths[ which(str_detect(Deaths$Province.State, "Hubei", negate = F)),]
-Deaths = Deaths[ which(str_detect(Deaths$Province.State, "Hubei", negate = T)), ]
 Deaths = Deaths[order(Deaths$Country.Region),]
-row.names(Deaths) <- NULL
-
-Hubei.Recovered = Recovered[ which(str_detect(Recovered$Province.State, "Hubei", negate = F)), ]
-Recovered = Recovered[ which(str_detect(Recovered$Province.State, "Hubei", negate = T)), ]
 Recovered = Recovered[order(Recovered$Country.Region),]
-row.names(Recovered) <- NULL
 
-###
+row.names(Confirmed) <- NULL
+row.names(Deaths) <- NULL
+row.names(Recovered) <- NULL
+#####################
+
+
+# Hubei
+Hubei.Confirmed = read.csv("cleaned/Hubei/time_series_19-covid-Confirmed.csv")
+Hubei.Deaths = read.csv("cleaned/Hubei/time_series_19-covid-Recovered.csv")
+Hubei.Recovered = read.csv("cleaned/Hubei/time_series_19-covid-Deaths.csv")
+
+# Cruise
+Diamond.Princess.Confirmed = read.csv("cleaned/Diamond-Princess/time_series_19-covid-Confirmed.csv")
+Diamond.Princess.Deaths = read.csv("cleaned/Diamond-Princess/time_series_19-covid-Recovered.csv")
+Diamond.Princess.Recovered = read.csv("cleaned/Diamond-Princess/time_series_19-covid-Deaths.csv")
+
+
+#View(Confirmed)
+#View(Deaths)
+#View(Recovered)
+
+#View(Hubei.Confirmed)
+#View(Hubei.Deaths)
+#View(Hubei.Recovered)
+
+#View(Diamond.Princess.Confirmed)
+#View(Diamond.Princess.Deaths)
+#View(Diamond.Princess.Recovered)
+
+
+#----------------------------------------------#
+
+
+# Removing outlier i.e. Hubei
 Hubei.Confirmed <- cbind(Hubei.Confirmed[,1], Hubei.Confirmed[,5:ncol(Hubei.Confirmed)])
 Hubei.Deaths <- cbind(Hubei.Deaths[,1], Hubei.Deaths[,5:ncol(Hubei.Deaths)])
 Hubei.Recovered <- cbind(Hubei.Recovered[,1], Hubei.Recovered[,5:ncol(Hubei.Recovered)])
@@ -68,22 +92,6 @@ colnames(Hubei.Recovered) <- names
 #----------------------------------------------#
 
 # Removing outlier i.e. Diamond Princess
-Diamond.Princess.Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Diamond Princess cruise ship", negate = F)), ]
-Confirmed = Confirmed[ which(str_detect(Confirmed$Province.State, "Diamond Princess cruise ship", negate = T)), ]
-Confirmed = Confirmed[order(Confirmed$Country.Region),]
-row.names(Confirmed) <- NULL
-
-Diamond.Princess.Deaths = Deaths[ which(str_detect(Deaths$Province.State, "Diamond Princess cruise ship", negate = F)),]
-Deaths = Deaths[ which(str_detect(Deaths$Province.State, "Diamond Princess cruise ship", negate = T)), ]
-Deaths = Deaths[order(Deaths$Country.Region),]
-row.names(Deaths) <- NULL
-
-Diamond.Princess.Recovered = Recovered[ which(str_detect(Recovered$Province.State, "Diamond Princess cruise ship", negate = F)), ]
-Recovered = Recovered[ which(str_detect(Recovered$Province.State, "Diamond Princess cruise ship", negate = T)), ]
-Recovered = Recovered[order(Recovered$Country.Region),]
-row.names(Recovered) <- NULL
-
-###
 Diamond.Princess.Confirmed <- cbind(Diamond.Princess.Confirmed[,1], Diamond.Princess.Confirmed[,5:ncol(Diamond.Princess.Confirmed)])
 Diamond.Princess.Deaths <- cbind(Diamond.Princess.Deaths[,1], Diamond.Princess.Deaths[,5:ncol(Diamond.Princess.Deaths)])
 Diamond.Princess.Recovered <- cbind(Diamond.Princess.Recovered[,1], Diamond.Princess.Recovered[,5:ncol(Diamond.Princess.Recovered)])
@@ -94,6 +102,8 @@ colnames(Diamond.Princess.Deaths) <- names
 colnames(Diamond.Princess.Recovered) <- names
 #----------------------------------------------#
 
+# Some interesting facts
+Countries = Countries[which(str_detect(Countries, "Diamond Princess cruise ship", negate = T))]
 
 
 #######################
@@ -104,7 +114,6 @@ colnames(Diamond.Princess.Recovered) <- names
 
 ##################
 country.spread.daily <- function(dfName, country) {
-  country
   df <- get(dfName)
   df = df[which(str_detect(df$Country.Region, country)),]
   df = cbind(States = df[,1], Country = df[,2], df[,5:ncol(df)])
@@ -113,38 +122,43 @@ country.spread.daily <- function(dfName, country) {
   return (df)
 }
 
+
 ##################
 country.aggregate.daily  <-  function(dfName, country) {
   
   temp = country.spread.daily(dfName, country)            # all states' data of a country
-  df = temp[1,]                                           # structure of required dataframe
+  df = temp[-(1:nrow(temp)),]                             # structure of required dataframe
   
   df[3:ncol(temp)] = apply(   temp[,3:ncol(temp)],
                             2,
                             sum
                         )                               # applying sum of all the states' values
   df = df[2:ncol(df)]                                   # removing column 'States'
+  
   row.names(df) <- NULL
   
   return(df)
 }
+
 
 ##################
 countries.daily <-  function(dfName, cList = Countries) {
   
   n = length(cList)       # number of countries
-  df = country.aggregate.daily(dfName, cList[1])
   
-  for (i in 2:n) {
+  temp = country.aggregate.daily(dfName, cList[1])
+  df = temp[-(1:nrow(temp)),] 
+  View(df)
+  
+  for (i in 1:n) {
     temp = country.aggregate.daily(dfName, cList[i])
     df = rbind(df, temp)
   }
+  
   row.names(df) <- NULL
   
   return(df)
 }
-
-
 
 
 ###   processing data till date   ###
@@ -368,9 +382,6 @@ outlier.datewise <- function(Name, df1, df2, df3) { # hubei, dim. pr. etc..
 #-----------------------------------------------------------------------#
 
 
-# Some interesting facts
-locations <- Deaths[,1:2]   # all states of different countries
-Countries <- levels(locations$Country.Region)
 
 
 
@@ -387,7 +398,7 @@ One.Country.States.daily.Confirmed <- country.spread.daily("Confirmed", Country)
 One.Country.States.daily.Deaths <- country.spread.daily("Deaths", Country)
 One.Country.States.daily.Recovered <- country.spread.daily("Recovered", Country)
 
-#View(One.Country.States.daily.Confirmed)
+View(One.Country.States.daily.Confirmed)
 #View(One.Country.States.daily.Deaths)
 #View(One.Country.States.daily.Recovered)
 
@@ -396,7 +407,7 @@ One.Country.Aggregate.daily.Confirmed <- country.aggregate.daily("Confirmed", Co
 One.Country.Aggregate.daily.Deaths <- country.aggregate.daily("Deaths", Country)
 One.Country.Aggregate.daily.Recovered <- country.aggregate.daily("Recovered", Country)
 
-#View(One.Country.Aggregate.daily.Confirmed)
+View(One.Country.Aggregate.daily.Confirmed)
 #View(One.Country.Aggregate.daily.Deaths)
 #View(One.Country.Aggregate.daily.Recovered)
 
@@ -404,9 +415,16 @@ One.Country.Aggregate.daily.Recovered <- country.aggregate.daily("Recovered", Co
 All.Countries.daily.Confirmed <- countries.daily("Confirmed")
 All.Countries.daily.Deaths <- countries.daily("Deaths")
 All.Countries.daily.Recovered <- countries.daily("Recovered")
-str(All.Countries.daily.Confirmed)
+#str(All.Countries.daily.Confirmed)
+All.Countries.daily.Confirmed = na.omit(All.Countries.daily.Confirmed)
+All.Countries.daily.Deaths = na.omit(All.Countries.daily.Deaths)
+All.Countries.daily.Recovered = na.omit(All.Countries.daily.Recovered)
+# removing Cruise row --> NA
+row.names(All.Countries.daily.Confirmed) <- NULL
+row.names(All.Countries.daily.Deaths) <- NULL
+row.names(All.Countries.daily.Recovered) <- NULL
 
-#View(All.Countries.daily.Confirmed)
+View(All.Countries.daily.Confirmed)
 #View(All.Countries.daily.Deaths)
 #View(All.Countries.daily.Recovered)
 
