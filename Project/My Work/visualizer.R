@@ -16,15 +16,17 @@ Deaths = read.csv("ready_to_use/COVID-19/Deaths.csv")
 Recovered = read.csv("ready_to_use/COVID-19/Recovered.csv")
 
 
-countryWise.bulk.summary = read.csv("ready_to_use/COVID-19/countryWise_bulk_summary.csv")
+countryWise.bulk.summary = read.csv("ready_to_use/COVID-19/Mixed/countryWise_bulk_summary.csv")
 # train on 80% dates, test on 20%
-dateWise.bulk.summary = read.csv("ready_to_use/COVID-19/dateWise_bulk_summary.csv")
+dateWise.bulk.summary = read.csv("ready_to_use/COVID-19/Mixed/dateWise_bulk_summary.csv")
 
 
 Four.daily.Confirmed = read.csv("ready_to_use/COVID-19/FOUR/Four_daily_Confirmed.csv")
 Four.daily.Deaths = read.csv("ready_to_use/COVID-19/FOUR/Four_daily_Deaths.csv")
 Four.daily.Recovered = read.csv("ready_to_use/COVID-19/FOUR/Four_daily_Recovered.csv")
 Four.Summary = read.csv("ready_to_use/COVID-19/FOUR/Four_Summary.csv")
+
+Four.dataset.locationWise = read.csv("ready_to_use/COVID-19/FOUR/Four_dataset_locationWise.csv")
 Four.dataset.dateWise = read.csv("ready_to_use/COVID-19/FOUR/Four_dataset_dateWise.csv")
 
 #---------------------------------------------------------------#
@@ -241,6 +243,132 @@ till.date = function(yAxis, dataSet, cName = c("Hubei", "World", "China", "Diamo
   
 }
 
+
+
+
+
+
+
+
+till.date.Confirmed = function(lName = c("Hubei", "World", "China", "Diamond Princess"), yesORno = FALSE) {
+  
+  
+  locationWise.bulk.summary.Four = Four.dataset.locationWise[
+    which(str_detect(Four.dataset.locationWise$Location,
+                     lName,
+                     negate = yesORno)),
+    ]
+  
+  #####################################################
+  
+  d <- locationWise.bulk.summary.Four %>% 
+    as_tibble()
+  
+  d_ends <- locationWise.bulk.summary.Four %>% 
+    group_by(Location) %>% 
+    top_n(1, Day) %>% 
+    pull(Confirmed)    # col can be changed
+  
+  temp = as.character(Four.dataset.locationWise$Date[1:nlevels(Four.dataset.locationWise$Date)])
+  new = c(temp[10], temp[20], temp[30], temp[40])
+  
+  d %>% 
+    ggplot(aes(Day, Confirmed, color = Location)) +
+    geom_line(size = 2, alpha = 0.8) +
+    theme_minimal() +
+    scale_x_continuous(label = new, breaks = c(10, 20, 30, 40)) +
+    scale_y_continuous(sec.axis = sec_axis(~ ., breaks = d_ends)) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Few(specify type of such countries) reporting more deaths for the confirmed cases",
+            subtitle = "Based on the dataset of given country") +
+    labs(x = "Dates", y = "Confirmed", caption = "Plot by @ravi")
+  
+}
+
+
+
+
+till.date.Deaths = function(lName = c("Hubei", "World", "China", "Diamond Princess"), yesORno = FALSE) {
+  
+  
+  locationWise.bulk.summary.Four = Four.dataset.locationWise[
+    which(str_detect(Four.dataset.locationWise$Location,
+                     lName,
+                     negate = yesORno)),
+    ]
+  
+  #####################################################
+  
+  d <- locationWise.bulk.summary.Four %>% 
+    as_tibble()
+  
+  d_ends <- locationWise.bulk.summary.Four %>% 
+    group_by(Location) %>% 
+    top_n(1, Day) %>% 
+    pull(Deaths)    # col can be changed
+  
+  temp = as.character(Four.dataset.locationWise$Date[1:nlevels(Four.dataset.locationWise$Date)])
+  new = c(temp[10], temp[20], temp[30], temp[40])
+  
+  d %>% 
+    ggplot(aes(Day, Deaths, color = Location)) +
+    geom_line(size = 2, alpha = 0.8) +
+    theme_minimal() +
+    scale_x_continuous(label = new, breaks = c(10, 20, 30, 40)) +
+    scale_y_continuous(sec.axis = sec_axis(~ ., breaks = d_ends)) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Few(specify type of such countries) reporting more deaths for the confirmed cases",
+            subtitle = "Based on the dataset of given country") +
+    labs(x = "Dates", y = "Deaths", caption = "Plot by @ravi")
+  
+}
+
+
+
+
+till.date.Recovered = function(lName = c("Hubei", "World", "China", "Diamond Princess"), yesORno = FALSE) {
+  
+  
+  locationWise.bulk.summary.Four = Four.dataset.locationWise[
+    which(str_detect(Four.dataset.locationWise$Location,
+                     lName,
+                     negate = yesORno)),
+    ]
+  
+  #####################################################
+  
+  d <- locationWise.bulk.summary.Four %>% 
+    as_tibble()
+  
+  d_ends <- locationWise.bulk.summary.Four %>% 
+    group_by(Location) %>% 
+    top_n(1, Day) %>% 
+    pull(Recovered)    # col can be changed
+  
+  temp = as.character(Four.dataset.locationWise$Date[1:nlevels(Four.dataset.locationWise$Date)])
+  new = c(temp[10], temp[20], temp[30], temp[40])
+  
+  d %>% 
+    ggplot(aes(Day, Recovered, color = Location)) +
+    geom_line(size = 2, alpha = 0.8) +
+    theme_minimal() +
+    scale_x_continuous(label = new, breaks = c(10, 20, 30, 40)) +
+    scale_y_continuous(sec.axis = sec_axis(~ ., breaks = d_ends)) +
+    theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+    ggtitle("Few(specify type of such countries) reporting more deaths for the confirmed cases",
+            subtitle = "Based on the dataset of given country") +
+    labs(x = "Dates", y = "Recovered", caption = "Plot by @ravi")
+  
+}
+
+
+
+
+
+
+
+
+
 #---------------------------------------------------------------#
 
 View(countryWise.bulk.summary)
@@ -249,11 +377,11 @@ View(countryWise.bulk.summary)
 #######  VISUALIZATIONS  ########
 #################################
 
-bulk.summary = read.csv("ready_to_use/COVID-19/bulk_summary.csv")
+bulk.summary = read.csv("ready_to_use/COVID-19/Mixed/bulk_summary.csv")
 #  Plotting state VS deaths --> country wise
 ggplot(bulk.summary, aes(x = States, y = Confirmed, color = Country)) +
   geom_jitter(alpha = 0.7) +
-  scale_y_continuous(breaks=seq(0,1500,50))   # sets y's range from 0 to 1500, with teak of 51
+  scale_y_continuous(breaks=seq(0,1500,100))   # sets y's range from 0 to 1500, with teak of 51
 
 
 #################################
@@ -267,7 +395,7 @@ plot.deaths.in("China")
 
 # for multiple country
 plot.recovered.in(c("Hong Kong", "Italy", "South Korea", "Iran"))
-plot.deaths.in(c("Hong Kong", "Italy", "South Korea"))
+plot.deaths.in(c("Hong Kong", "Italy", "South Korea", "Iran"))
 
 # esle then the specified country
 plot.recovered.in("China", TRUE)
@@ -276,11 +404,11 @@ plot.deaths.in("China", TRUE)
 # esle then the specified countries
 countryList = levels(countryWise.bulk.summary$Country)
 # plot.recovered.in(c("Vietnam", "US", "Taiwan"), TRUE)  # not working
-# plot.deaths.in(c("Vietnam", "US", "Taiwan"), TRUE)  # not working
+# plot.deaths.in(c("China", "Hong Kong", "Italy", "South Korea", "Iran"), T)  # not working
 
 
 ############### day wise
-confirmed.till.date("India")
+confirmed.till.date("Italy")
 confirmed.till.date(c("Italy", "South Korea", "Hong Kong"))
 
 deaths.till.date("South Korea")
@@ -292,13 +420,21 @@ recovery.till.date(c("Italy", "South Korea", "Hong Kong"))
 
 
 ########################
-## a Histogram or Bar plot will be better for --> Four.dataset.dateWise
-View(Four.dataset.dateWise)
+## a Histogram or Bar plot will be better for --> Four.dataset.locationWise
+View(Four.dataset.locationWise)
 
-till.date(yAxis = "Confirmed", dataSet = "Four.dataset.dateWise")
-till.date(yAxis = "Deaths", dataSet = "Four.dataset.dateWise")
-till.date(yAxis = "Recovered", dataSet = "Four.dataset.dateWise")
+# Lines
+till.date.Confirmed(c("Hubei", "China"))
+till.date.Deaths("Hubei", T)
+till.date.Recovered()
 
-
+# Histigrams
+### plotting  ###
+# devision of survivers in each class
+# ggplot(train, aes(x = Pclass, fill = factor(Survived))) +
+#  geom_histogram(binwidth = 0.5) +
+#  xlab("Pclass") +
+#  ylab("Total Count") +
+#  labs(fill = "Survived")
 
 
