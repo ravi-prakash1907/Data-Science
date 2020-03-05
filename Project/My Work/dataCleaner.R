@@ -3,6 +3,11 @@
 # Setting the working directory
 setwd("/home/ravi/Documents/Data-Science/Project/My Work/")
 
+#####  LIBRARIES  #####
+# loading library for string operations
+library(stringr)
+library(RFmarkerDetector) # random forest  ---> for autoscale()
+
 
 ## replace new time series files first, then run following command -----> 'n your dataset is updated
 check.Confirmed = read.csv("/home/ravi/Documents/Data-Science/John H. University/COVID-19/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv")
@@ -158,19 +163,9 @@ for (i in 1:length(levels(check.Recovered$Country.Region))) {
 #View(check.Deaths)
 #View(check.Recovered)
 
+
 ###############################
 #str(check.Confirmed)
-
-
-# Removing outlier i.e. Hubei
-Hubei.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Hubei", negate = F)), ]
-check.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Hubei", negate = T)), ]
-
-Hubei.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Hubei", negate = F)),]
-check.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Hubei", negate = T)), ]
-
-Hubei.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Hubei", negate = F)), ]
-check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Hubei", negate = T)), ]
 
 
 # Removing outlier i.e. Diamond.Princess
@@ -184,19 +179,46 @@ Diamond.Princess.Recovered = check.Recovered[ which(str_detect(check.Recovered$P
 check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Diamond Princess cruise ship", negate = T)), ]
 
 
+###  When and Where COVID-19 affected   --->  excluding Diamond Princess
+Affected = check.Confirmed
+# Unit scaling
+for (i in row.names(Affected)) {
+  for (j in 5:ncol(Affected)) {
+    if(Affected[i,j] != 0)
+      Affected[i,j] = 1
+  }
+}
+
+Affected = cbind(Affected[,1:4], Initially = c(rep(0, nrow(Affected))), Affected[,5:ncol(Affected)])
+# this is for confirmed, cam also do for Deaths & recovereds
+
+#View(Affected)
+
+
+# Removing outlier i.e. Hubei
+Hubei.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Hubei", negate = F)), ]
+check.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Hubei", negate = T)), ]
+
+Hubei.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Hubei", negate = F)),]
+check.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Hubei", negate = T)), ]
+
+Hubei.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Hubei", negate = F)), ]
+check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Hubei", negate = T)), ]
+
+
 
 ## Rectifying Row sequences
 row.names(check.Confirmed) <- NULL
 row.names(check.Deaths) <- NULL
 row.names(check.Recovered) <- NULL
 
-row.names(Hubei.Confirmed) <- NULL
-row.names(Hubei.Deaths) <- NULL
-row.names(Hubei.Recovered) <- NULL
-
 row.names(Diamond.Princess.Confirmed) <- NULL
 row.names(Diamond.Princess.Deaths) <- NULL
 row.names(Diamond.Princess.Recovered) <- NULL
+
+row.names(Hubei.Confirmed) <- NULL
+row.names(Hubei.Deaths) <- NULL
+row.names(Hubei.Recovered) <- NULL
 
 
 ###
@@ -209,21 +231,24 @@ row.names(Diamond.Princess.Recovered) <- NULL
 
 # creating new .csv file after cleaning the data
 
-## Hubei
-write.csv(Hubei.Confirmed, file = "cleaned/Hubei/time_series_19-covid-Confirmed.csv", row.names = FALSE)
-write.csv(Hubei.Deaths, file = "cleaned/Hubei/time_series_19-covid-Recovered.csv", row.names = FALSE)
-write.csv(Hubei.Recovered, file = "cleaned/Hubei/time_series_19-covid-Deaths.csv", row.names = FALSE)
-
 ## Diamond Princess
 write.csv(Diamond.Princess.Confirmed, file = "cleaned/Diamond-Princess/time_series_19-covid-Confirmed.csv", row.names = FALSE)
 write.csv(Diamond.Princess.Deaths, file = "cleaned/Diamond-Princess/time_series_19-covid-Recovered.csv", row.names = FALSE)
 write.csv(Diamond.Princess.Recovered, file = "cleaned/Diamond-Princess/time_series_19-covid-Deaths.csv", row.names = FALSE)
+
+## Hubei
+write.csv(Hubei.Confirmed, file = "cleaned/Hubei/time_series_19-covid-Confirmed.csv", row.names = FALSE)
+write.csv(Hubei.Deaths, file = "cleaned/Hubei/time_series_19-covid-Recovered.csv", row.names = FALSE)
+write.csv(Hubei.Recovered, file = "cleaned/Hubei/time_series_19-covid-Deaths.csv", row.names = FALSE)
 
 
 ## Main files
 write.csv(check.Confirmed, file = "cleaned/time_series_19-covid-Confirmed.csv", row.names = FALSE)
 write.csv(check.Recovered, file = "cleaned/time_series_19-covid-Recovered.csv", row.names = FALSE)
 write.csv(check.Deaths, file = "cleaned/time_series_19-covid-Deaths.csv", row.names = FALSE)
+
+###   For map plot & gif
+write.csv(Affected, file = "cleaned/Affected.csv", row.names = FALSE)
 
 
 
@@ -234,12 +259,16 @@ cleaned.Confirmed <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
 cleaned.Deaths <- read.csv("cleaned/time_series_19-covid-Deaths.csv")
 cleaned.Recovered <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
 
+cleaned.Affected <- read.csv("cleaned/Affected.csv")
+
 #str(cleaned.Confirmed)
 
 
 View(cleaned.Confirmed)
 View(cleaned.Deaths)
 View(cleaned.Recovered)
+
+View(cleaned.Affected)
 
 
 

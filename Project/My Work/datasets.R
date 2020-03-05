@@ -103,7 +103,7 @@ colnames(Diamond.Princess.Recovered) <- names
 #----------------------------------------------#
 
 # Some interesting facts
-Countries = Countries[which(str_detect(Countries, "Diamond Princess cruise ship", negate = T))]
+Countries = levels(Confirmed$Country.Region)
 
 
 #######################
@@ -127,7 +127,8 @@ country.spread.daily <- function(dfName, country) {
 country.aggregate.daily  <-  function(dfName, country) {
   
   temp = country.spread.daily(dfName, country)            # all states' data of a country
-  df = temp[-(1:nrow(temp)),]                             # structure of required dataframe
+  #df = temp[-(1:nrow(temp)),]                             # structure of required dataframe
+  df = temp[1,] 
   
   df[3:ncol(temp)] = apply(   temp[,3:ncol(temp)],
                             2,
@@ -146,13 +147,18 @@ countries.daily <-  function(dfName, cList = Countries) {
   
   n = length(cList)       # number of countries
   
-  temp = country.aggregate.daily(dfName, cList[1])
-  df = temp[-(1:nrow(temp)),] 
-  View(df)
+  flag = 0
   
-  for (i in 1:n) {
-    temp = country.aggregate.daily(dfName, cList[i])
-    df = rbind(df, temp)
+  for (i in cList) {
+    
+    if(flag == 0) {
+      df = country.aggregate.daily(dfName, i)
+      flag = 1
+    } else {
+      temp = country.aggregate.daily(dfName, i)
+      df = rbind(df, temp)
+    }
+    
   }
   
   row.names(df) <- NULL
@@ -327,8 +333,8 @@ world.daily.bulk.summary = function(dfC, dfD, dfR) {
 }
 
 ######    Datewise
-datewise <- function(Country, yesORno, cList = countries) {
-  df = countries.daily.bulk.summary(countries)
+datewise <- function(Country, yesORno, cList = Countries) {
+  df = countries.daily.bulk.summary(Countries)
   df = df[ which(str_detect(df$Country, Country, negate = yesORno)), ]
   
   return(df)
@@ -398,7 +404,7 @@ One.Country.States.daily.Confirmed <- country.spread.daily("Confirmed", Country)
 One.Country.States.daily.Deaths <- country.spread.daily("Deaths", Country)
 One.Country.States.daily.Recovered <- country.spread.daily("Recovered", Country)
 
-View(One.Country.States.daily.Confirmed)
+#View(One.Country.States.daily.Confirmed)
 #View(One.Country.States.daily.Deaths)
 #View(One.Country.States.daily.Recovered)
 
@@ -407,24 +413,16 @@ One.Country.Aggregate.daily.Confirmed <- country.aggregate.daily("Confirmed", Co
 One.Country.Aggregate.daily.Deaths <- country.aggregate.daily("Deaths", Country)
 One.Country.Aggregate.daily.Recovered <- country.aggregate.daily("Recovered", Country)
 
-View(One.Country.Aggregate.daily.Confirmed)
+#View(One.Country.Aggregate.daily.Confirmed)
 #View(One.Country.Aggregate.daily.Deaths)
 #View(One.Country.Aggregate.daily.Recovered)
 
-########  All states of all Countries (Spread of all countries)  #########
+########  All states of all Countries (Spread of all Countries)  #########
 All.Countries.daily.Confirmed <- countries.daily("Confirmed")
 All.Countries.daily.Deaths <- countries.daily("Deaths")
 All.Countries.daily.Recovered <- countries.daily("Recovered")
-#str(All.Countries.daily.Confirmed)
-All.Countries.daily.Confirmed = na.omit(All.Countries.daily.Confirmed)
-All.Countries.daily.Deaths = na.omit(All.Countries.daily.Deaths)
-All.Countries.daily.Recovered = na.omit(All.Countries.daily.Recovered)
-# removing Cruise row --> NA
-row.names(All.Countries.daily.Confirmed) <- NULL
-row.names(All.Countries.daily.Deaths) <- NULL
-row.names(All.Countries.daily.Recovered) <- NULL
 
-View(All.Countries.daily.Confirmed)
+#View(All.Countries.daily.Confirmed)
 #View(All.Countries.daily.Deaths)
 #View(All.Countries.daily.Recovered)
 
@@ -477,15 +475,15 @@ bulk.summary = data.frame(
 ###########################
 
 # date wise summary of all the countries
-dataset.countryWise = countries.daily.bulk.summary(countries)
+dataset.countryWise = countries.daily.bulk.summary(Countries)
 dataset.dateWise = dataset.countryWise[order(dataset.countryWise$Date),]
 
 #View(dataset)
 #View(dataset.dateWise)
 
 #--------------------------------------------------------------------#
-One.country.dataset.dateWise = datewise(Country, FALSE, countries)
-Rest.world.dataset.dateWise = datewise(Country, TRUE, countries)
+One.country.dataset.dateWise = datewise(Country, FALSE, Countries)
+Rest.world.dataset.dateWise = datewise(Country, TRUE, Countries)
 #View(One.country.dataset.dateWise)
 #View(Rest.world.dataset.dateWise)
 
@@ -529,6 +527,7 @@ write.csv(Diamond.Princess.summary, file = "ready_to_use/COVID-19/Cruise/Diamond
 write.csv(Diamond.Princess.datewise, file = "ready_to_use/COVID-19/Cruise/Diamond_Princess_dataset_dateWise_summary.csv", row.names = FALSE)
 
 ################      CHINA     #################
+# can be sorted StateWise
 write.csv(country.spread.daily("Confirmed", cName), file = "ready_to_use/COVID-19/China/China_States_daily_Confirmed.csv", row.names = FALSE)
 write.csv(country.spread.daily("Deaths", cName), file = "ready_to_use/COVID-19/China/China_States_daily_Deaths.csv", row.names = FALSE)
 write.csv(country.spread.daily("Recovered", cName), file = "ready_to_use/COVID-19/China/China_States_daily_Recovered.csv", row.names = FALSE)
@@ -540,11 +539,11 @@ write.csv(country.aggregate.daily("Recovered", cName), file = "ready_to_use/COVI
 write.csv(states.summarizer(cName), file = "ready_to_use/COVID-19/China/China_States_summary.csv", row.names = FALSE)
 write.csv(country.summarizer(cName), file = "ready_to_use/COVID-19/China/China_Aggregate_summary.csv", row.names = FALSE)
 
-write.csv(datewise(cName, FALSE, countries), file = "ready_to_use/COVID-19/China/China_dataset_dateWise_summary.csv", row.names = FALSE)
+write.csv(datewise(cName, FALSE, Countries), file = "ready_to_use/COVID-19/China/China_dataset_dateWise_summary.csv", row.names = FALSE)
 
 
 ################      WORLD     #################
-Non.China.Countries.daily.Confirmed = All.Countries.daily.Confirmed[ which(str_detect(All.Countries.daily.Confirmed$Country, cName, negate = T)),]
+Non.China.Countries.daily.Confirmed = All.Countries.daily.Confirmed
 Non.China.Countries.daily.Deaths = All.Countries.daily.Deaths[ which(str_detect(All.Countries.daily.Deaths$Country, cName, negate = T)),]
 Non.China.Countries.daily.Recovered = All.Countries.daily.Recovered[ which(str_detect(All.Countries.daily.Recovered$Country, cName, negate = T)),]
 Non.China.Countries.summary = All.Countries.summary[ which(str_detect(All.Countries.summary$Country, cName, negate = T)),]
@@ -654,14 +653,16 @@ Four.Summary <- rbind(a, b, c, d)
 
 # 3 dataset datewise 3XnoOfDays -> rows, 6cols(name, dayno., date, confirm, death, recover)
 a = Hubei.datewise
-b = datewise("China", FALSE, countries)
+b = datewise("China", FALSE, Countries)
 c = Non.China.datewise
 d = Diamond.Princess.datewise
 colnames(a) <- colnames(c)
 colnames(b) <- colnames(c)
 colnames(d) <- colnames(c)
 
-Four.dataset.dateWise <- rbind(a, b, c, d)
+Four.dataset.locationWise <- rbind(a, b, c, d)
+Four.dataset.dateWise <- Four.dataset.locationWise[order(Four.dataset.locationWise$Date), ]
+row.names(Four.dataset.dateWise) <- NULL
 
 
 # writting (5)
@@ -670,6 +671,7 @@ write.csv(Four.daily.Deaths, file = "ready_to_use/COVID-19/FOUR/Four_daily_Death
 write.csv(Four.daily.Recovered, file = "ready_to_use/COVID-19/FOUR/Four_daily_Recovered.csv", row.names = FALSE)
 
 write.csv(Four.Summary, file = "ready_to_use/COVID-19/FOUR/Four_Summary.csv", row.names = FALSE)
+write.csv(Four.dataset.locationWise, file = "ready_to_use/COVID-19/FOUR/Four_dataset_locationWise.csv", row.names = FALSE)
 write.csv(Four.dataset.dateWise, file = "ready_to_use/COVID-19/FOUR/Four_dataset_dateWise.csv", row.names = FALSE)
 
 
