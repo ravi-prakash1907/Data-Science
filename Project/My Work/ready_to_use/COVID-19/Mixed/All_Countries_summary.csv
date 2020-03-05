@@ -1,79 +1,86 @@
 "Country","Confirmed","Deaths","Recovered"
 "Afghanistan",1,0,0
-"Algeria",5,0,0
+"Algeria",12,0,0
 "Andorra",1,0,0
 "Argentina",1,0,0
 "Armenia",1,0,0
-"Australia",39,1,11
-"Austria",21,0,0
+"Australia",52,2,11
+"Austria",29,0,0
 "Azerbaijan",3,0,0
-"Bahrain",49,0,0
-"Belarus",1,0,0
-"Belgium",13,0,1
-"Brazil",2,0,0
+"Bahrain",52,0,0
+"Belarus",6,0,0
+"Belgium",23,0,1
+"Brazil",4,0,0
 "Cambodia",1,0,1
-"Canada",30,0,6
+"Canada",33,0,6
 "Chile",1,0,0
-"China",12934,110,11196
-"Croatia",9,0,0
-"Czech Republic",5,0,0
-"Denmark",6,0,0
+"China",12939,110,11398
+"Croatia",10,0,0
+"Czech Republic",8,0,0
+"Denmark",10,0,0
 "Dominican Republic",1,0,0
-"Ecuador",7,0,0
+"Ecuador",10,0,0
 "Egypt",2,0,1
 "Estonia",2,0,0
+"Faroe Islands",1,0,0
 "Finland",6,0,1
-"France",204,4,12
+"France",285,4,12
 "Georgia",3,0,0
-"Germany",196,0,16
-"Greece",7,0,0
-"Hong Kong",100,2,37
-"Iceland",11,0,0
-"India",5,0,3
+"Germany",262,0,16
+"Gibraltar",1,0,0
+"Greece",9,0,0
+"Hong Kong",105,2,37
+"Hungary",2,0,0
+"Iceland",26,0,0
+"India",28,0,3
 "Indonesia",2,0,0
-"Iran",2336,77,291
-"Iraq",32,0,0
-"Ireland",2,0,0
-"Israel",12,0,1
-"Italy",2502,79,160
-"Japan",293,6,43
+"Iran",2922,92,552
+"Iraq",35,2,0
+"Ireland",6,0,0
+"Israel",15,0,1
+"Italy",3089,107,276
+"Japan",331,6,43
 "Jordan",1,0,0
 "Kuwait",56,0,0
 "Latvia",1,0,0
-"Lebanon",13,0,0
+"Lebanon",13,0,1
+"Liechtenstein",1,0,0
 "Lithuania",1,0,0
 "Luxembourg",1,0,0
 "Macau",10,0,9
-"Malaysia",36,0,22
+"Malaysia",50,0,22
 "Mexico",5,0,1
 "Monaco",1,0,0
 "Morocco",1,0,0
 "Nepal",1,0,1
-"Netherlands",24,0,0
-"New Zealand",1,0,0
+"Netherlands",38,0,0
+"New Zealand",3,0,0
 "Nigeria",1,0,0
 "North Macedonia",1,0,0
-"Norway",32,0,0
-"Oman",12,0,2
+"Norway",56,0,0
+"Oman",15,0,2
 "Pakistan",5,0,0
 "Philippines",3,1,1
-"Portugal",2,0,0
-"Qatar",7,0,0
-"Romania",3,0,0
+"Poland",1,0,0
+"Portugal",5,0,0
+"Qatar",8,0,0
+"Romania",4,0,1
 "Russia",3,0,2
-"San Marino",10,1,0
+"Saint Barthelemy",3,0,0
+"San Marino",16,1,0
 "Saudi Arabia",1,0,0
-"Senegal",2,0,0
+"Senegal",4,0,0
 "Singapore",110,0,78
-"South Korea",5186,28,30
-"Spain",165,1,2
+"South Korea",5621,35,41
+"Spain",222,2,2
 "Sri Lanka",1,0,1
-"Sweden",21,0,0
-"Switzerland",56,0,2
+"Sweden",35,0,0
+"Switzerland",90,0,3
 "Taiwan",42,1,12
 "Thailand",43,1,31
+"Tunisia",1,0,0
 "Ukraine",1,0,0
 "United Arab Emirates",27,0,5
-"United Kingdom",51,0,8
-"United States",122,7,8
+"United Kingdom",85,0,8
+"United States",153,11,8
 "Vietnam",16,0,16

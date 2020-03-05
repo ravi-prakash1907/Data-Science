@@ -1,150 +1,159 @@
 "","States","Country","Confirmed","Deaths","Recovered"
 "1","Others","Afghanistan",1,0,0
-"2","Others","Algeria",5,0,0
+"2","Others","Algeria",12,0,0
 "3","Others","Andorra",1,0,0
 "4","Others","Argentina",1,0,0
 "5","Others","Armenia",1,0,0
-"6","New South Wales","Australia",13,0,4
-"7","Victoria","Australia",9,0,4
+"6","New South Wales","Australia",22,1,4
+"7","Victoria","Australia",10,0,4
 "8","Queensland","Australia",11,0,1
-"9","South Australia","Australia",3,0,2
+"9","South Australia","Australia",5,0,2
 "10","From Diamond Princess","Australia",0,0,0
 "11","Western Australia","Australia",2,1,0
 "12","Tasmania","Australia",1,0,0
-"13","Others","Austria",21,0,0
-"14","Others","Azerbaijan",3,0,0
-"15","Others","Bahrain",49,0,0
-"16","Others","Belarus",1,0,0
-"17","Others","Belgium",13,0,1
-"18","Others","Brazil",2,0,0
-"19","Others","Cambodia",1,0,1
-"20","Toronto, ON","Canada",19,0,2
-"21","British Columbia","Canada",9,0,3
-"22","London, ON","Canada",1,0,1
-"23"," Montreal, QC","Canada",1,0,0
-"24","Others","Chile",1,0,0
-"25","Anhui","China",990,6,936
-"26","Beijing","China",414,8,288
-"27","Chongqing","China",576,6,490
-"28","Fujian","China",296,1,260
-"29","Gansu","China",91,2,86
-"30","Guangdong","China",1350,7,1101
-"31","Guangxi","China",252,2,202
-"32","Guizhou","China",146,2,114
-"33","Hainan","China",168,5,155
-"34","Hebei","China",318,6,300
-"35","Heilongjiang","China",480,13,366
-"36","Henan","China",1272,22,1231
-"37","Hunan","China",1018,4,906
-"38","Inner Mongolia","China",75,1,59
-"39","Jiangsu","China",631,0,562
-"40","Jiangxi","China",935,1,870
-"41","Jilin","China",93,1,83
-"42","Liaoning","China",125,1,106
-"43","Ningxia","China",74,0,69
-"44","Qinghai","China",18,0,18
-"45","Shaanxi","China",245,1,216
-"46","Shandong","China",758,6,511
-"47","Shanghai","China",338,3,294
-"48","Shanxi","China",133,0,124
-"49","Sichuan","China",538,3,394
-"50","Tianjin","China",136,3,124
-"51","Tibet","China",1,0,1
-"52","Xinjiang","China",76,3,68
-"53","Yunnan","China",174,2,169
-"54","Zhejiang","China",1213,1,1093
-"55","Others","Croatia",9,0,0
-"56","Others","Czech Republic",5,0,0
-"57","Others","Denmark",6,0,0
-"58","Others","Dominican Republic",1,0,0
-"59","Others","Ecuador",7,0,0
-"60","Others","Egypt",2,0,1
-"61","Others","Estonia",2,0,0
-"62","Others","Finland",6,0,1
-"63","Others","France",204,4,12
-"64","Others","Georgia",3,0,0
-"65","Others","Germany",196,0,16
-"66","Others","Greece",7,0,0
-"67","Hong Kong","Hong Kong",100,2,37
-"68","Others","Iceland",11,0,0
-"69","Others","India",5,0,3
-"70","Others","Indonesia",2,0,0
-"71","Others","Iran",2336,77,291
-"72","Others","Iraq",32,0,0
-"73","Others","Ireland",2,0,0
-"74","Others","Israel",12,0,1
-"75","Others","Italy",2502,79,160
-"76","Others","Japan",293,6,43
-"77","Others","Jordan",1,0,0
-"78","Others","Kuwait",56,0,0
-"79","Others","Latvia",1,0,0
-"80","Others","Lebanon",13,0,0
-"81","Others","Lithuania",1,0,0
-"82","Others","Luxembourg",1,0,0
-"83","Macau","Macau",10,0,9
-"84","Others","Malaysia",36,0,22
-"85","Others","Mexico",5,0,1
-"86","Others","Monaco",1,0,0
-"87","Others","Morocco",1,0,0
-"88","Others","Nepal",1,0,1
-"89","Others","Netherlands",24,0,0
-"90","Others","New Zealand",1,0,0
-"91","Others","Nigeria",1,0,0
-"92","Others","North Macedonia",1,0,0
-"93","Others","Norway",32,0,0
-"94","Others","Oman",12,0,2
-"95","Others","Pakistan",5,0,0
-"96","Others","Philippines",3,1,1
-"97","Others","Portugal",2,0,0
-"98","Others","Qatar",7,0,0
-"99","Others","Romania",3,0,0
-"100","Others","Russia",3,0,2
-"101","Others","San Marino",10,1,0
-"102","Others","Saudi Arabia",1,0,0
-"103","Others","Senegal",2,0,0
-"104","Others","Singapore",110,0,78
-"105","Others","South Korea",5186,28,30
-"106","Others","Spain",165,1,2
-"107","Others","Sri Lanka",1,0,1
-"108","Others","Sweden",21,0,0
-"109","Others","Switzerland",56,0,2
-"110","Taiwan","Taiwan",42,1,12
-"111","Others","Thailand",43,1,31
-"112","Others","Ukraine",1,0,0
-"113","Others","United Arab Emirates",27,0,5
-"114","Others","United Kingdom",51,0,8
-"115","King County, WA","United States",21,6,1
-"116","Cook County, IL","United States",4,0,2
-"117","Tempe, AZ","United States",1,0,1
-"118","Orange, CA","United States",1,0,0
-"119","Los Angeles, CA","United States",1,0,0
-"120","Santa Clara, CA","United States",11,0,1
-"121","Boston, MA","United States",1,0,1
-"122","San Benito, CA","United States",2,0,0
-"123","Madison, WI","United States",1,0,1
-"124","San Diego County, CA","United States",2,0,1
-"125","San Antonio, TX","United States",1,0,0
-"126","Omaha, NE (From Diamond Princess)","United States",0,0,0
-"127","Travis, CA (From Diamond Princess)","United States",0,0,0
-"128","Lackland, TX (From Diamond Princess)","United States",0,0,0
-"129","Humboldt County, CA","United States",1,0,0
-"130","Sacramento County, CA","United States",2,0,0
-"131","Unassigned Location (From Diamond Princess)","United States",45,0,0
-"132","Snohomish County, WA","United States",6,1,0
-"133","Providence, RI","United States",2,0,0
-"134","Grafton County, NH","United States",2,0,0
-"135","Hillsborough, FL","United States",2,0,0
-"136","New York City, NY","United States",1,0,0
-"137","Placer County, CA","United States",1,0,0
-"138","San Mateo, CA","United States",2,0,0
-"139","Sarasota, FL","United States",1,0,0
-"140","Sonoma County, CA","United States",1,0,0
-"141","Umatilla, OR","United States",1,0,0
-"142","Fulton County, GA","United States",2,0,0
-"143","Washington County, OR","United States",2,0,0
-"144"," Norfolk County, MA","United States",1,0,0
-"145","Berkeley, CA","United States",1,0,0
-"146","Maricopa County, AZ","United States",1,0,0
-"147","Wake County, NC","United States",1,0,0
-"148","Westchester County, NY","United States",1,0,0
-"149","Others","Vietnam",16,0,16
+"13","Northern Territory","Australia",1,0,0
+"14","Others","Austria",29,0,0
+"15","Others","Azerbaijan",3,0,0
+"16","Others","Bahrain",52,0,0
+"17","Others","Belarus",6,0,0
+"18","Others","Belgium",23,0,1
+"19","Others","Brazil",4,0,0
+"20","Others","Cambodia",1,0,1
+"21","Toronto, ON","Canada",19,0,2
+"22","British Columbia","Canada",12,0,3
+"23","London, ON","Canada",1,0,1
+"24"," Montreal, QC","Canada",1,0,0
+"25","Others","Chile",1,0,0
+"26","Anhui","China",990,6,956
+"27","Beijing","China",418,8,297
+"28","Chongqing","China",576,6,502
+"29","Fujian","China",296,1,270
+"30","Gansu","China",91,2,87
+"31","Guangdong","China",1350,7,1133
+"32","Guangxi","China",252,2,210
+"33","Guizhou","China",146,2,114
+"34","Hainan","China",168,5,158
+"35","Hebei","China",318,6,301
+"36","Heilongjiang","China",480,13,373
+"37","Henan","China",1272,22,1234
+"38","Hunan","China",1018,4,916
+"39","Inner Mongolia","China",75,1,63
+"40","Jiangsu","China",631,0,577
+"41","Jiangxi","China",935,1,884
+"42","Jilin","China",93,1,86
+"43","Liaoning","China",125,1,106
+"44","Ningxia","China",75,0,69
+"45","Qinghai","China",18,0,18
+"46","Shaanxi","China",245,1,223
+"47","Shandong","China",758,6,516
+"48","Shanghai","China",338,3,298
+"49","Shanxi","China",133,0,124
+"50","Sichuan","China",538,3,406
+"51","Tianjin","China",136,3,124
+"52","Tibet","China",1,0,1
+"53","Xinjiang","China",76,3,69
+"54","Yunnan","China",174,2,169
+"55","Zhejiang","China",1213,1,1114
+"56","Others","Croatia",10,0,0
+"57","Others","Czech Republic",8,0,0
+"58","Others","Denmark",10,0,0
+"59","Others","Dominican Republic",1,0,0
+"60","Others","Ecuador",10,0,0
+"61","Others","Egypt",2,0,1
+"62","Others","Estonia",2,0,0
+"63","Others","Faroe Islands",1,0,0
+"64","Others","Finland",6,0,1
+"65","Others","France",285,4,12
+"66","Others","Georgia",3,0,0
+"67","Others","Germany",262,0,16
+"68","Others","Gibraltar",1,0,0
+"69","Others","Greece",9,0,0
+"70","Hong Kong","Hong Kong",105,2,37
+"71","Others","Hungary",2,0,0
+"72","Others","Iceland",26,0,0
+"73","Others","India",28,0,3
+"74","Others","Indonesia",2,0,0
+"75","Others","Iran",2922,92,552
+"76","Others","Iraq",35,2,0
+"77","Others","Ireland",6,0,0
+"78","Others","Israel",15,0,1
+"79","Others","Italy",3089,107,276
+"80","Others","Japan",331,6,43
+"81","Others","Jordan",1,0,0
+"82","Others","Kuwait",56,0,0
+"83","Others","Latvia",1,0,0
+"84","Others","Lebanon",13,0,1
+"85","Others","Liechtenstein",1,0,0
+"86","Others","Lithuania",1,0,0
+"87","Others","Luxembourg",1,0,0
+"88","Macau","Macau",10,0,9
+"89","Others","Malaysia",50,0,22
+"90","Others","Mexico",5,0,1
+"91","Others","Monaco",1,0,0
+"92","Others","Morocco",1,0,0
+"93","Others","Nepal",1,0,1
+"94","Others","Netherlands",38,0,0
+"95","Others","New Zealand",3,0,0
+"96","Others","Nigeria",1,0,0
+"97","Others","North Macedonia",1,0,0
+"98","Others","Norway",56,0,0
+"99","Others","Oman",15,0,2
+"100","Others","Pakistan",5,0,0
+"101","Others","Philippines",3,1,1
+"102","Others","Poland",1,0,0
+"103","Others","Portugal",5,0,0
+"104","Others","Qatar",8,0,0
+"105","Others","Romania",4,0,1
+"106","Others","Russia",3,0,2
+"107","Others","Saint Barthelemy",3,0,0
+"108","Others","San Marino",16,1,0
+"109","Others","Saudi Arabia",1,0,0
+"110","Others","Senegal",4,0,0
+"111","Others","Singapore",110,0,78
+"112","Others","South Korea",5621,35,41
+"113","Others","Spain",222,2,2
+"114","Others","Sri Lanka",1,0,1
+"115","Others","Sweden",35,0,0
+"116","Others","Switzerland",90,0,3
+"117","Taiwan","Taiwan",42,1,12
+"118","Others","Thailand",43,1,31
+"119","Others","Tunisia",1,0,0
+"120","Others","Ukraine",1,0,0
+"121","Others","United Arab Emirates",27,0,5
+"122","Others","United Kingdom",85,0,8
+"123","King County, WA","United States",31,9,1
+"124","Cook County, IL","United States",4,0,2
+"125","Tempe, AZ","United States",1,0,1
+"126","Los Angeles, CA","United States",7,0,0
+"127","Santa Clara, CA","United States",11,0,1
+"128","Boston, MA","United States",1,0,1
+"129","San Benito, CA","United States",2,0,0
+"130","Madison, WI","United States",1,0,1
+"131","San Diego County, CA","United States",2,0,1
+"132","San Antonio, TX","United States",1,0,0
+"133","Omaha, NE (From Diamond Princess)","United States",0,0,0
+"134","Travis, CA (From Diamond Princess)","United States",0,0,0
+"135","Lackland, TX (From Diamond Princess)","United States",0,0,0
+"136","Humboldt County, CA","United States",1,0,0
+"137","Sacramento County, CA","United States",2,0,0
+"138","Unassigned Location (From Diamond Princess)","United States",45,0,0
+"139","Snohomish County, WA","United States",8,1,0
+"140","Providence, RI","United States",2,0,0
+"141","Grafton County, NH","United States",2,0,0
+"142","Hillsborough, FL","United States",2,0,0
+"143","New York City, NY","United States",1,0,0
+"144","Placer County, CA","United States",2,1,0
+"145","San Mateo, CA","United States",2,0,0
+"146","Sarasota, FL","United States",1,0,0
+"147","Sonoma County, CA","United States",1,0,0
+"148","Umatilla, OR","United States",1,0,0
+"149","Fulton County, GA","United States",2,0,0
+"150","Washington County, OR","United States",2,0,0
+"151"," Norfolk County, MA","United States",1,0,0
+"152","Berkeley, CA","United States",1,0,0
+"153","Maricopa County, AZ","United States",1,0,0
+"154","Wake County, NC","United States",1,0,0
+"155","Westchester County, NY","United States",10,0,0
+"156","Orange County, CA","United States",3,0,0
+"157","Contra Costa County, CA","United States",1,0,0
+"158","Others","Vietnam",16,0,16
