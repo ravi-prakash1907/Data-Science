@@ -167,6 +167,11 @@ for (i in 1:length(levels(check.Recovered$Country.Region))) {
 ###############################
 #str(check.Confirmed)
 
+## Closed cases (i.e. Recovered or Death cases)
+cases.Closed = cbind(check.Confirmed[,1:4],  (check.Deaths[,5:ncol(check.Deaths)] + check.Recovered[,5:ncol(check.Recovered)]))
+## Active cases 
+cases.Active = cbind(check.Confirmed[,1:4],  (check.Confirmed[,5:ncol(check.Confirmed)] - cases.Closed[,5:ncol(cases.Closed)]))
+
 
 # Removing outlier i.e. Diamond.Princess
 Diamond.Princess.Confirmed = check.Confirmed[ which(str_detect(check.Confirmed$Province.State, "Diamond Princess cruise ship", negate = F)), ]
@@ -179,20 +184,27 @@ Diamond.Princess.Recovered = check.Recovered[ which(str_detect(check.Recovered$P
 check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Diamond Princess cruise ship", negate = T)), ]
 
 
-###  When and Where COVID-19 affected   --->  excluding Diamond Princess
-Affected = check.Confirmed
+###  When and Where COVID-19 ever.Affected / still.Affected  --->  excluding Diamond Princess
+ever.Affected = check.Confirmed
 # Unit scaling
-for (i in row.names(Affected)) {
-  for (j in 5:ncol(Affected)) {
-    if(Affected[i,j] != 0)
-      Affected[i,j] = 1
+for (i in row.names(ever.Affected)) {
+  for (j in 5:ncol(ever.Affected)) {
+    if(ever.Affected[i,j] != 0)
+      ever.Affected[i,j] = 1
   }
 }
 
-Affected = cbind(Affected[,1:4], Initially = c(rep(0, nrow(Affected))), Affected[,5:ncol(Affected)])
-# this is for confirmed, cam also do for Deaths & recovereds
+still.Affected = check.Confirmed
+# Unit scaling
+for (i in row.names(still.Affected)) {
+  for (j in 5:ncol(still.Affected)) {
+    if(still.Affected[i,j] != 0)
+      still.Affected[i,j] = 1
+  }
+}
 
-#View(Affected)
+#View(ever.Affected)
+#View(still.Affected)
 
 
 # Removing outlier i.e. Hubei
@@ -248,7 +260,8 @@ write.csv(check.Recovered, file = "cleaned/time_series_19-covid-Recovered.csv", 
 write.csv(check.Deaths, file = "cleaned/time_series_19-covid-Deaths.csv", row.names = FALSE)
 
 ###   For map plot & gif
-write.csv(Affected, file = "cleaned/Affected.csv", row.names = FALSE)
+write.csv(ever.Affected, file = "cleaned/ever.Affected.csv", row.names = FALSE)
+write.csv(still.Affected, file = "cleaned/still.Affected.csv", row.names = FALSE)
 
 
 
@@ -259,7 +272,8 @@ cleaned.Confirmed <- read.csv("cleaned/time_series_19-covid-Confirmed.csv")
 cleaned.Deaths <- read.csv("cleaned/time_series_19-covid-Deaths.csv")
 cleaned.Recovered <- read.csv("cleaned/time_series_19-covid-Recovered.csv")
 
-cleaned.Affected <- read.csv("cleaned/Affected.csv")
+cleaned.ever.Affected <- read.csv("cleaned/ever.Affected.csv")
+cleaned.still.Affected <- read.csv("cleaned/still.Affected.csv")
 
 #str(cleaned.Confirmed)
 
@@ -268,7 +282,8 @@ View(cleaned.Confirmed)
 View(cleaned.Deaths)
 View(cleaned.Recovered)
 
-View(cleaned.Affected)
+View(cleaned.ever.Affected)
+View(cleaned.still.Affected)
 
 
 
