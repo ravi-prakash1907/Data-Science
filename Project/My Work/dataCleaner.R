@@ -20,6 +20,27 @@ Recovered <- read.csv("old/time_series_2019-ncov-Recovered.csv")
 Deaths <- read.csv("old/time_series_2019-ncov-Deaths.csv")
 
 # removing NAs
+
+# new files
+for (i in 1:nrow(check.Confirmed)) {
+  for (j in 5:ncol(check.Confirmed)) {
+    check.Confirmed[i,j] = ifelse(is.na(check.Confirmed[i, j]), 0, check.Confirmed[i,j])
+  }
+}
+
+for (i in 1:nrow(check.Recovered)) {
+  for (j in 5:ncol(check.Recovered)) {
+    check.Recovered[i,j] = ifelse(is.na(check.Recovered[i, j]), 0, check.Recovered[i,j])
+  }
+}
+
+for (i in 1:nrow(check.Deaths)) {
+  for (j in 5:ncol(check.Deaths)) {
+    check.Deaths[i,j] = ifelse(is.na(check.Deaths[i, j]), 0, check.Deaths[i,j])
+  }
+}
+
+# old files
 for (i in 1:nrow(Confirmed)) {
   for (j in 5:ncol(Confirmed)) {
     Confirmed[i,j] = ifelse(is.na(Confirmed[i, j]), 0, Confirmed[i,j])
@@ -153,10 +174,6 @@ for (i in 1:length(levels(check.Recovered$Country.Region))) {
 }
 
 
-#levels(check.Confirmed$Country.Region) = sort(levels(check.Confirmed$Country.Region))
-#levels(check.Deaths$Country.Region) = sort(levels(check.Deaths$Country.Region))
-#levels(check.Recovered$Country.Region) = sort(levels(check.Recovered$Country.Region))
-
 #####################
 
 #View(check.Confirmed)
@@ -183,6 +200,11 @@ check.Deaths = check.Deaths[ which(str_detect(check.Deaths$Province.State, "Diam
 Diamond.Princess.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Diamond Princess cruise ship", negate = F)), ]
 check.Recovered = check.Recovered[ which(str_detect(check.Recovered$Province.State, "Diamond Princess cruise ship", negate = T)), ]
 
+
+## Rectifying Row sequences
+row.names(check.Confirmed) <- NULL
+row.names(check.Deaths) <- NULL
+row.names(check.Recovered) <- NULL
 
 ###  When and Where COVID-19 ever.Affected / still.Affected  --->  excluding Diamond Princess
 ever.Affected = check.Confirmed
