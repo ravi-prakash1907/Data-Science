@@ -10,9 +10,9 @@ library(RFmarkerDetector) # random forest  ---> for autoscale()
 
 
 ## replace new time series files first, then run following command -----> 'n your dataset is updated
-check.Confirmed = read.csv("John H. University/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv")
-check.Recovered = read.csv("John H. University/csse_covid_19_time_series/time_series_19-covid-Recovered.csv")
-check.Deaths = read.csv("John H. University/csse_covid_19_time_series/time_series_19-covid-Deaths.csv")
+check.Confirmed = read.csv("Johns H. University/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv")
+check.Recovered = read.csv("Johns H. University/csse_covid_19_time_series/time_series_19-covid-Recovered.csv")
+check.Deaths = read.csv("Johns H. University/csse_covid_19_time_series/time_series_19-covid-Deaths.csv")
 
 # loading
 Confirmed <- read.csv("old/time_series_2019-ncov-Confirmed.csv")
