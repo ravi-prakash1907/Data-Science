@@ -1,3 +1,7 @@
 ### Plots
-1. [Using ggplot2](https://www.r-bloggers.com/how-to-make-a-global-map-in-r-step-by-step/)
-2. [Create GIF](https://stackoverflow.com/questions/49319917/creating-animation-gif-in-r-using-png-files)
+This directory srotes the saved pics of verious plots/visualizations
+
+#### Citation
+1. [Google Clouds](clouds.google.com) --> ggmap()
+2. [GIF](https://ezgif.com/maker)
+3. [Colour Palettes for map-plots' theme](https://colorhunt.co/)
