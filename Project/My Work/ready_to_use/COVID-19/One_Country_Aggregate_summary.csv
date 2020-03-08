@@ -1,2 +1,2 @@
-"Country","Confirmed","Deaths","Recovered"
-"China",12981,111,11855
+"Country","Confirmed","Deaths","Recovered","Active.Cases","Closed.Cases"
+"China",12986,111,11978,897,12089
