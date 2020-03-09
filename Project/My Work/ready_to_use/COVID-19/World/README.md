@@ -1,1 +1,0 @@
-## Whole worlds' data except China
