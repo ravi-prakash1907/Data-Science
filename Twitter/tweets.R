@@ -5,11 +5,11 @@ library("ROAuth")
 # Download "cacert.pem" file
 download.file(url="http://curl.haxx.se/ca/cacert.pem",destfile="cacert.pem")
 
-api_key = '5eAxM60oCK4oME2pc086p3R3A'
-api_secret = '24t4J77mp0YQ7AiXroqjnOh78jDiUuosKMwhlrJbxQqsZ0pdkD'
+api_key = 'your_api_key'
+api_secret = 'your_api_secret'
 
-access_tocken = '893461067166171137-jV8a8R2lrs6Kp9TsB2lasdBQMWPlPHN'
-access_tocken_secret = 'SKLEk9GDqnYnoNZVwFtAwvmHr10fwyvkDb5Ht5Jx2U0oW'
+access_tocken = 'your_access_tocken'
+access_tocken_secret = 'your_access_tocken_secret'
 
 setup_twitter_oauth(api_key, api_secret, access_tocken,  access_tocken_secret)
 
