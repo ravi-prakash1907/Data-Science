@@ -11,3 +11,5 @@ for (i in 1:12) {
 
 table <- matrix(table, nrow = 10, ncol = 12)
 colnames(table) <- columns
+
+View(table)

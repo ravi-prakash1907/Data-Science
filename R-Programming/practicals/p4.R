@@ -2,8 +2,14 @@
 
 t <- as.numeric(readline("Enter the number of elements in list: "))
 
-print("Enter the numbers:")
+l <- list(NULL)
 
-num <- list(3, 8, 6, 4)
-num
+for(i in 1:t) {
+  num <- as.numeric(readline("Enter a numbers:"))
+  l <- c(l, num)
+  l[[i]] = num
+}
 
+## Max element in the list
+
+max(as.numeric(l))
