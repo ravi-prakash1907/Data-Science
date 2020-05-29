@@ -1,5 +1,3 @@
-# to be edited
-
 t <- as.numeric(readline("Enter the number of elements in list: "))
 
 l <- list(NULL)
