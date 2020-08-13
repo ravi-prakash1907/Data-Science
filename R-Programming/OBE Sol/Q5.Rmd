@@ -1,0 +1,69 @@
+---
+title: "markdown"
+author: "Ravi Prakash"
+output: html_document
+---
+# R-Markdown for Binary Search
+
+<br />
+
+### Displaying the Input Array
+
+**The following _display_ chunk displays the array i.e. used as input for the Binary search implementation** <br />
+_(We just taking the array as input, as not performing any other task, in order to isplay the same as per the requirement of the question)_
+```{r display}
+len <- as.numeric(readline(prompt = "Enter length of the array: "))
+
+arr <- NULL
+for(i in 1:len) {
+  num <- as.numeric(readline(prompt = "Enter an element: "))
+  arr <- c(arr, num)
+}
+
+print(arr)
+```
+
+### Function for Binary Search
+
+The following function takes 2 parameters viz `list` (i.e. the array) and `input` (i.e. the element to be searched) and performs the Binary Search <br />
+It does **NOT** displays any output, rather the function return `TRUE` if the searched element **exists** and `FALSE`, otherwise.
+```{r bsearch}
+bsearch <- function(list, input){
+  
+  beg = 1
+  end = as.numeric(length(list))
+  
+  while(beg <= end) {
+    mid = as.integer((beg+end)/2)
+    
+    if(list[[mid]] == input) {
+      return (TRUE)
+    }
+    else if(input < list[[mid]]) {
+      end <- mid-1
+    } else {
+      beg <- mid+1
+    }
+    
+  }
+  
+  return (FALSE)
+}
+```
+
+### Searching an Element
+
+The following code-chunk calls the above defined `bsearch()` function in order to search an element (8 here) in the provided array. <br />
+
+If the function returns `TRUE` this block dosplays a message **Found!!**, else print **Not Found!!** <br />
+
+_(We can also take the element i.e. to be searched as user-input using function `readline()`)_
+```{r output}
+res <- bsearch(arr, 8)
+
+if (res) {
+  print("Found!!") 
+} else {
+  print("Not Found!!")
+}
+```
